@@ -34,6 +34,9 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="css/product.css">
+
+
 </head>
 <body class="animsition">
 	
@@ -45,25 +48,7 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
-
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a>
+						Miễn phí vận chuyển với đơn hàng trên 500K. Hàng pre-order còn được giảm thêm 5%.
 					</div>
 				</div>
 			</div>
@@ -96,9 +81,6 @@
 								<a href="shoping-cart.html">Shopping Cart</a>
 							</li>
 
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
 
 							<li>
 								<a href="about.html">About</a>
@@ -120,9 +102,11 @@
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						<div class="icon-user">
+							<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti">
+								<i class="zmdi zmdi-account-o"></i>
+							</a>
+						</div>
 					</div>
 				</nav>
 			</div>	
@@ -145,9 +129,11 @@
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
+				<div class="icon-user">
+					<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti">
+						<i class="zmdi zmdi-account-o"></i>
+					</a>
+				</div>
 			</div>
 
 			<!-- Button show menu -->
@@ -161,34 +147,6 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
-					</div>
-				</li>
-			</ul>
-
 			<ul class="main-menu-m">
 				<li>
 					<a href="index.html">Home</a>
@@ -209,11 +167,6 @@
 				<li>
 					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
-
-				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
 				<li>
 					<a href="about.html">About</a>
 				</li>
@@ -402,7 +355,7 @@
 							$17,75
 						</span>
 
-						<p style="font-size: 14px; line-height: 1.7;" class=" cl3 p-t-23">
+						<p style="font-family: Poppins, sans-serif; font-size: 14px; line-height: 1.7;" class=" cl3 p-t-23">
 							CREW LS JERSEY - Chiếc áo tay dài mới được thiết kế theo phong cách thể thao với điểm nhấn nằm ở họa tiết mặt trước, mặt sau và 2 bên tay áo được sử dụng chất liệu in kéo lụa sắc nét. Phần thân áo và tay áo được may phối viền nổi bật. Áo sử dụng vải mesh lưới tạo cảm giác thoải mái và thoáng mát hơn cho bạn khi vận động.
 						</p>
 						
@@ -983,12 +936,6 @@
 								Shopping Cart
 							</a>
 						</li>
-
-						<li class="p-b-10">
-							<a href="/blog.html" class="stext-107 cl7 hov-cl1 trans-04">
-								Blog
-							</a>
-						</li>
 						<li class="p-b-10">
 							<a href="/about.html" class="stext-107 cl7 hov-cl1 trans-04">
 								About
@@ -1295,7 +1242,7 @@
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "Đã thêm vào mục yêu thích !", "success");
 
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
@@ -1306,7 +1253,7 @@
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "Đã thêm vào mục yêu thích !", "success");
 
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
@@ -1318,7 +1265,7 @@
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "Đã thêm vào giỏ hàng !", "success");
 			});
 		});
 	
