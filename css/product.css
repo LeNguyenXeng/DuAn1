@@ -18,3 +18,6 @@
     font-family: Poppins, serif;
 
 }
+.rs1-select2 .select2-container .select2-selection--single .select2-selection__rendered{
+    font-family: Poppins-Regular, sans-serif;
+}
