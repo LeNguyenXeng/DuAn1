@@ -3,21 +3,83 @@
 }
 @font-face {
     font-family: Poppins;
-    src: url(/fonts/Poppins/Poppins-Medium.ttf);
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Medium.ttf);
 }
 @font-face {
     font-family: Poppins-Regular;
-    src: url(/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: tets;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: Popspismedium;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: PopspisBold;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-PopspisBold.ttf);
+}
+@font-face {
+    font-family: extraloght;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-ExtraLight.ttf);
+}
+@font-face {
+    font-family: bold2;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-SemiBold.ttf);
+}
+@font-face {
+    font-family: bold3;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-ExtraBold.ttf);
 }
 .swal-text{
     font-family: Poppins-Regular, sans-serif;
-
 }
 .left-top-bar{
     margin: auto;
-    font-family: Poppins, serif;
-
+    font-family: tets, sans-serif;
 }
 .rs1-select2 .select2-container .select2-selection--single .select2-selection__rendered{
     font-family: Poppins-Regular, sans-serif;
+}
+.stext-107{
+    font-family: Popspismedium, sans-serif;
+
+}
+.stext-103{
+    font-family: Poppins-Regular, sans-serif;
+}
+.stext-101{
+    font-family: Poppins, sans-serif;
+    margin-top: 30px;
+    text-transform: capitalize;
+}
+.mtext-107{
+    font-family: Poppins-Regular, sans-serif;
+    font-size: 15px;
+}
+.ltext-103{
+    font-family: bold3, sans-serif;
+}
+.wrap-search-header input{
+    font-size: 34px;
+    font-family: extraloght, sans-serif;
+}
+.rs1-select2 .select2-container .select2-results__option[aria-selected]{
+	font-family: Poppins-Regular, sans-serif;
+}
+.stext-102{
+    margin-top: -10px;
+}
+.mtext-107{
+    font-family: Popspismedium, sans-serif;
+    font-size: 15px;
+}
+.stext-105{
+    font-family: Popspismedium, sans-serif;
+}
+.tab01 .nav-link {
+    font-family: Popspismedium, sans-serif;
+
 }
