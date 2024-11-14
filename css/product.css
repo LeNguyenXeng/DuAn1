@@ -85,3 +85,37 @@
 .stext-106{
     font-family: Popspismedium, sans-serif;
 }
+.mtext-104{
+    background-color: white;
+}
+.table-shopping-cart .table_head th {
+    font-family: Popspismedium, sans-serif;
+    padding-top: 18px;
+    padding-bottom: 15px;
+}
+.table-shopping-cart .column-5 {
+    font-family: Popspismedium, sans-serif;
+    font-size: 14px;
+}
+.table-shopping-cart .column-3 {
+    font-family: Popspismedium, sans-serif;
+    font-size: 14px;
+}
+.table-shopping-cart .table_row td {
+    padding-bottom: 28px;
+}
+.mtext-109{
+    font-family: bold2, sans-serif;
+
+}
+.stext-110 {
+    font-family: Popspismedium, sans-serif;
+
+}
+.mtext-110 {
+    color: rgb(255, 66, 66);
+    margin-left: 20px;
+    font-family: Popspismedium, sans-serif;
+    font-size: 16px;
+    
+}
