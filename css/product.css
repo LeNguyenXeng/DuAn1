@@ -41,6 +41,10 @@
     font-family: Poppis-Italic;
     src: url(/fonts/FzPoppins/FZ\ Poppins-Italic.ttf);
 }
+@font-face {
+    font-family: semibold;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-SemiBold.ttf);
+}
 .swal-text{
     font-family: Poppins-Regular, sans-serif;
 }
@@ -137,4 +141,20 @@
     font-family: Poppins-Regular, sans-serif;
     font-size: 14px;
     line-height: 1.666667;
+}
+.size-105 {
+    min-width: 126px;
+    height: 40px;
+}
+.size-104 {
+    min-width: 114px;
+    height: 40px;
+}
+.mtext-103{
+    font-family: bold3, sans-serif;
+    font-size: 20px;
+}
+.mtext-102{
+    font-family: semibold, sans-serif;
+
 }
