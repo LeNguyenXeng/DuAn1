@@ -2,6 +2,10 @@
     display: none;
 }
 @font-face {
+    font-family: Poppis-Light;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Light.ttf);
+}
+@font-face {
     font-family: Poppins;
     src: url(/fonts/FzPoppins/FZ\ Poppins-Medium.ttf);
 }
@@ -32,6 +36,10 @@
 @font-face {
     font-family: bold3;
     src: url(/fonts/FzPoppins/FZ\ Poppins-ExtraBold.ttf);
+}
+@font-face {
+    font-family: Poppis-Italic;
+    src: url(/fonts/FzPoppins/FZ\ Poppins-Italic.ttf);
 }
 .swal-text{
     font-family: Poppins-Regular, sans-serif;
@@ -117,5 +125,16 @@
     margin-left: 20px;
     font-family: Popspismedium, sans-serif;
     font-size: 16px;
-    
+}
+.stext-113{
+    font-family: Poppis-Light, sans-serif;
+}
+.stext-114 {
+    font-family: Poppis-Italic, sans-serif;
+
+}
+.stext-115{
+    font-family: Poppins-Regular, sans-serif;
+    font-size: 14px;
+    line-height: 1.666667;
 }
