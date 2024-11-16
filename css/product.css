@@ -158,3 +158,62 @@
     font-family: semibold, sans-serif;
 
 }
+.chuacotk{
+    margin-top: 8px; 
+    gap: 7px;
+    color: black;
+    font-family: Popspismedium, sans-serif;
+
+}
+.textdangnhap{
+    color: black;
+    font-family: Popspismedium, sans-serif;
+
+}
+.login-page .texta{
+    text-decoration: underline;
+    font-family: Popspismedium, sans-serif;
+
+    
+}
+.mb-3{
+    margin: auto; 
+    width: 40%;
+}
+.login-page .button{
+    text-align: center;
+}
+.btn-dark {
+    background-color: #000000;
+    border-color: #000000;
+    width: 40%;
+    height: 44px;
+    font-family: Popspismedium, sans-serif;
+
+}
+.login-page{
+    margin-top: 43px;
+    margin-bottom: 70px;
+}
+.tkmk{
+    font-size: 13px;
+    color: black;
+    font-family: Popspismedium, sans-serif;
+}
+.inputform{
+    height: 44px;
+    font-size: 13px;
+    font-family: Popspismedium, sans-serif;
+
+
+}
+.quenmk{
+    font-size: 13px;
+    color: black;
+    font-family: Popspismedium, sans-serif;
+}
+.quenmk:hover{
+    color: black;
+    text-decoration: underline;
+}
+
