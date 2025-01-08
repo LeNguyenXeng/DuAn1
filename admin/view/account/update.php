@@ -1,3 +1,8 @@
+<?php
+    if(is_array($tk)){
+        extract($tk);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,16 +29,18 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <form action="">
+                        <form action="index.php?act=editaccount" method="POST">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Tên Tài Khoản</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" value="Admin">
+                                    aria-describedby="emailHelp" name="hoten"
+                                    value="<?php if (isset($hoten) && ($hoten != "")) echo $hoten; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Mật Khẩu</label>
-                                <input type="password" class="form-control" id="myInput" aria-describedby="emailHelp"
-                                    value="12345678">
+                                <input type="password" class="form-control" name="matkhau" id="myInput"
+                                    aria-describedby="emailHelp"
+                                    value="<?php if (isset($matkhau) && ($matkhau != "")) echo $matkhau; ?>">
                                 <div class="custom-control custom-switch" style="margin-top: 10px;">
                                     <input type="checkbox" class="custom-control-input" id="switch1"
                                         onclick="myFunction()">
@@ -42,30 +49,36 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" value="admin@gmail.com	">
+                                <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"
+                                    value="<?php if (isset($email) && ($email != "")) echo $email; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                <input type="text" class="form-control" name="diachi" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
-                                    value="Khu phố 8, Thị trấn Thiệu Hóa, Huyện Thiệu Hóa,Thanh Hoá">
+                                    value="<?php if (isset($diachi) && ($diachi != "")) echo $diachi; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                                <input type="number" min="0" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" value="0396180619">
+                                <input type="number" min="0" class="form-control" name="sdt" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"
+                                    value="<?php if (isset($sdt) && ($sdt != "")) echo $sdt; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Vai Trò</label>
-                                <input type="number" min="0" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" value="0">
+                                <input type="number" min="0" name="role" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"
+                                    value="<?php if (isset($role) && ($role != "")) echo $role; ?>">
                             </div>
                             <a href="index.php?act=listaccount" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-sync-alt"></i>
                                 </span>
-                                <span class="text">Cập Nhật Tài Khoản</span>
+                                <input type="hidden" name="id_nguoidung"
+                                    value="<?php if (isset($id_nguoidung) && ($id_nguoidung>0)) echo $id_nguoidung; ?>">
+                                <input name="capnhat" type="submit" value="Cập Nhật Tài Khoản"
+                                    class="btn btn-primary"></input>
                             </a>
                         </form>
                     </table>
