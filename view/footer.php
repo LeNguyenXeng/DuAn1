@@ -233,6 +233,16 @@ $('.js-pscroll').each(function() {
     })
 });
     </script>
+    <script>
+function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+    </script>
     <!--===============================================================================================-->
     <script src="./resources/assets/js/main.js"></script>
 

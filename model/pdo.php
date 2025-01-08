@@ -42,3 +42,4 @@
         $kq = $sql->fetch(PDO::FETCH_ASSOC);
         return $kq;
     }
+    
