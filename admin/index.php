@@ -66,6 +66,9 @@ if(isset($_GET['act'])){
         case "addproduct":
             include "view/products/add.php";
             break;
+        case "addproduct1":
+                include "view/products/add.php";
+                break;
         case "updateproduct":
             include "view/products/update.php";
             break;
