@@ -55,6 +55,11 @@ if(isset($_GET['act'])){
             $listnguoidung = loadall_nguoidung();
             include "view/account/list.php";
             break;
+
+        case "logout":
+            session_unset();
+            header("location: login.php");
+            break;
         // Product
         case "listproduct":
             include "view/products/list.php";
