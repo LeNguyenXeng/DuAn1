@@ -36,26 +36,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Admin</td>
-                                <td>12345678</td>
-                                <td>admin@gmail.com</td>
-                                <td>Khu phố 8, Thị trấn Thiệu Hóa, Huyện Thiệu Hóa,Thanh Hoá</td>
-                                <td>0396180619</td>
-                                <td>1</td>
+                            <?php
+                                foreach ($listnguoidung as $nguoidung) {
+                                    extract($nguoidung);
+                                    $updatetk = "index.php?act=updateaccount&id=".$id_nguoidung;
+                                    $deletetk = "index.php?act=deleteaccount&id=".$id_nguoidung;
+                                    echo '
+                                <tr>
+                                <td>'.$id_nguoidung.'</td>
+                                <td>'.$hoten.'</td>
+                                <td>'.$matkhau.'</td>
+                                <td>'.$email.'</td>
+                                <td>'.$diachi.'</td>
+                                <td>'.$sdt.'</td>
+                                <td>'.$role.'</td>
                                 <td>
                                     <div style="display: flex; gap: 5px;">
-                                        <a href="index.php?act=updateaccount" class="btn btn-info btn-circle">
+                                        <a href="'.$updatetk.'" class="btn btn-info btn-circle">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
+                                        <a onclick="return confirm(\'Bạn có muốn xoá không?\')" href="'.$deletetk.'" class="btn btn-danger btn-circle">
                                             <i class="fas fa-trash"></i>
                                         </a>
 
                                     </div>
                                 </td>
                             </tr>
+                                ';
+                                }
+                                
+                            ?>
+
                         </tbody>
                     </table>
                 </div>

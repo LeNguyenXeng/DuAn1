@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Register</title>
+    <title>Update Account</title>
     <?php
  include "view/header.php";
 ?>
@@ -16,41 +16,47 @@
             </a>
 
             <span class="stext-109 cl4">
-                Register
+                Update Account
             </span>
         </div>
     </div>
     <div class="login-page">
-        <h2 class="textdangnhap text-center text-uppercase">Đăng ký tài khoản</h2>
-        <div class="chuacotk d-flex justify-content-center">
-            <h6 class="text-center">Bạn đã có tài khoản ?</h6>
-            <a href="index.php?act=login">
-                <h6 class="texta text-center">Đăng nhập tại dây</h6>
-            </a>
-        </div>
-        <form action="index.php?act=register" method="POST">
+        <h2 class="textdangnhap text-center text-uppercase">Cập nhật tài khoản</h2>
+        <?php
+                if(isset($_SESSION['user'])&&(is_array($_SESSION['user']))){
+                    extract($_SESSION['user']);
+                };
+        ?>
+        <form action="index.php?act=updateaccount" method="POST">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="tkmk form-label">Họ tên<nav></nav></label>
                 <input type="text" class="inputform form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="hoten" placeholder=" Họ tên" required>
+                    name="hoten" value="<?php echo $hoten ?>" required>
             </div>
-            <div class="mb-3">
+            <div class=" mb-3">
                 <label for="exampleInputEmail1" class="tkmk form-label">Số điện thoại</label>
                 <input type="number" class="inputform form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder=" Số điện thoại" name="sdt" required>
+                    value="<?php echo $sdt ?>" name="sdt" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="tkmk form-label">Email</label>
                 <input type="email" class="inputform form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder=" Email" name="email" required>
+                    value="<?php echo $email ?>" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="tkmk form-label">Mật khẩu</label>
-                <input type="password" class="inputform form-control" id="exampleInputPassword1" placeholder=" Mật khẩu"
-                    name="matkhau">
+                <input type="text" id="myInput" class="inputform form-control" id="exampleInputPassword1"
+                    value="<?php echo $matkhau ?>" name="matkhau">
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="tkmk form-label">Địa Chỉ</label>
+                <input type="text" class="inputform form-control" id="exampleInputPassword1" placeholder=" Địa Chỉ"
+                    value="<?php echo $diachi ?>" name="diachi">
             </div>
             <div class="button">
-                <input type="submit" style="margin-top: 10px;" class="btn btn-dark" value="Đăng Ký"
+                <input type="hidden" name="id" value="<?php echo $id_nguoidung ?>">
+                <input type="submit" style="margin-top: 10px;" class="btn btn-dark" value="Cập Nhật"
                     name="dangky"></input>
             </div>
         </form>
