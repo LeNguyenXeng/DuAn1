@@ -4,6 +4,7 @@ session_start();
 include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/pdo.php";
+include "../model/sanpham.php";
 if(!isset($_SESSION['user'])){
     header('location: login.php');
     exit();
@@ -64,6 +65,28 @@ if(isset($_GET['act'])){
             include "view/products/list.php";
             break;
         case "addproduct":
+            if (isset($_POST['themmoi'])&&($_POST['themmoi'])) {
+                $id_dm=$_POST['iddm'];
+                $hang = $_POST['hang'];
+                $tensp=$_POST['tensp'];
+                $giasp=$_POST['giasp'];
+                $mota=$_POST['mota'];
+                $filename=$_FILES['hinh']['name'];
+                $target_dir = "../upload/";
+                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                    // echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+                  } else {
+                    // echo "Sorry, there was an error uploading your file.";
+                  }
+                  insert_sanpham($tensp,$giasp,$filename,$mota,$id_dm,$hang);
+            header('location:index.php?act=listproduct');
+
+                $thongbao="Thêm thành công";
+            }
+            $list_dm = loadAll_danhmuc();
+            // var_dump($list_dm);
+           
             include "view/products/add.php";
             break;
         case "updateproduct":

@@ -12,7 +12,7 @@
     <title>Add Products</title>
     <?php
     include "view/header.php";
-?>
+    ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -21,47 +21,56 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Thêm Sản Phẩm</h6>
             </div>
-
+            <div class=" row frmcontent">
+                <form action="index.php?act=addproduct" method="post" enctype="multipart/form-data">
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <form action="">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Danh Mục</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Áo</option>
-                                    <option>Quần</option>
-                                    <option>Phụ Kiện</option>
-                                </select>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Danh Mục</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="iddm">
+                                <?php
+                                foreach ($list_dm as $danhmuc) {
+                                    extract($danhmuc);
+                                    echo '<option value="' . $id_dm . '">' . $ten_danhmuc . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Hãng</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="hang"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Tên Sản Phẩm</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="tensp"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Giá Sản Phẩm</label>
+                            <input type="number" min="0" class="form-control" id="exampleInputEmail1" name="giasp"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Hình Ảnh Sản Phẩm</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="hinh"
+                                    style="cursor: pointer;">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Tên Sản Phẩm</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Giá Sản Phẩm</label>
-                                <input type="number" min="0" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Hình Ảnh Sản Phẩm</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile"
-                                        style="cursor: pointer;">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Mô Tả</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
-                            </div>
-                            <a href="index.php?act=listproduct" class="btn btn-primary btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Thêm Sản Phẩm</span>
-                            </a>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Mô Tả</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="mota"></textarea>
+                        </div>
+                        <!-- <a  class="btn btn-primary btn-icon-split"> -->
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <input type="submit" name="themmoi" value="Thêm Sản Phẩm">
+                        <!-- </a> -->
                         </form>
                     </table>
 
@@ -75,4 +84,4 @@
 
     <?php
     include "view/footer.php";
-?>
+    ?>
