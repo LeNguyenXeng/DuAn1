@@ -45,9 +45,12 @@
                                 <input type="hidden" class="form-control" id="ngay_sua"  name="ngay_sua"
                                     aria-describedby="emailHelp">
                             </div> -->
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Thêm Danh Mục
-                            </button>
+                            <a class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                                <input type="submit"  class="btn btn-primary" value="Thêm Sản Phẩm"></span>
+                            </a>
                         </form>
                     </table>
 
