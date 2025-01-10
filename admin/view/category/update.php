@@ -34,13 +34,12 @@
                                 <input type="text" class="form-control" id="ten_danhmuc" name="ten_danhmuc"
                                     aria-describedby="emailHelp" value="<?php echo $dm['ten_danhmuc']  ?>"  >
                             </div>
-                            
+                            <a href="" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-sync-alt"></i>
                                 </span>
-                                <span class="text"  >
                                     <input class="btn btn-primary" type="submit" name="sua" id="" value="Cập Nhật" >
-                                </span>
+                            </a>
                         </form>
                     </table>
 
