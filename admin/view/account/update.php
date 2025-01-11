@@ -66,11 +66,19 @@
                                     value="<?php if (isset($sdt) && ($sdt != "")) echo $sdt; ?>">
                             </div>
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Ngày Đăng Ký</label>
+                                <input type="date" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"
+                                    value="<?php if (isset($ngaydangky) && ($ngaydangky != "")) echo $ngaydangky; ?>"
+                                    disabled>
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Vai Trò</label>
                                 <input type="number" min="0" name="role" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
                                     value="<?php if (isset($role) && ($role != "")) echo $role; ?>">
                             </div>
+
                             <a href="index.php?act=listaccount" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-sync-alt"></i>

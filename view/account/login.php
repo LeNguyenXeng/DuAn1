@@ -108,6 +108,11 @@
                                 <div style="width: 30%; font-family: semibold;">Địa Chỉ :</div>
                                 <div style="width: 70%; font-family: Poppins;"><?php echo $diachi ?></div>
                             </div>
+                            <hr>
+                            <div style="display: flex; margin-bottom: 10px;">
+                                <div style="width: 30%; font-family: semibold;">Ngày Đăng Ký :</div>
+                                <div style="width: 70%; font-family: Poppins;"><?php echo $ngaydangky ?></div>
+                            </div>
                         </div>
                     </div>
                 </div>

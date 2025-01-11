@@ -31,6 +31,7 @@
                                 <th>Email</th>
                                 <th>Địa Chỉ</th>
                                 <th>Số Điện Thoại</th>
+                                <th>Ngày Đăng Ký</th>
                                 <th>Vai Trò</th>
                                 <th>Hành Động</th>
                             </tr>
@@ -49,6 +50,7 @@
                                 <td>'.$email.'</td>
                                 <td>'.$diachi.'</td>
                                 <td>'.$sdt.'</td>
+                                <td>'.$ngaydangky.'</td>
                                 <td>'.$role.'</td>
                                 <td>
                                     <div style="display: flex; gap: 5px;">

@@ -1,6 +1,6 @@
 <?php
  function insert_nguoidung($hoten,$sdt,$email,$matkhau){
-        $sql = "INSERT INTO nguoi_dung(hoten,sdt,email,matkhau) values('$hoten','$sdt','$email','$matkhau')";
+        $sql = "INSERT INTO nguoi_dung(hoten,sdt,email,matkhau,ngaydangky) values('$hoten','$sdt','$email','$matkhau',now())";
         pdo_execute($sql);
     }
     function checkuser($email,$matkhau){
@@ -26,5 +26,10 @@
     function delete_taikhoan($id_nguoidung){
         $sql = "DELETE FROM nguoi_dung WHERE id_nguoidung=".$id_nguoidung;
         pdo_execute($sql);
+    }
+    function loadone_nguoidung($id_nguoidung){
+        $sql = "SELECT * FROM nguoi_dung WHERE id_nguoidung=".$id_nguoidung;
+        $tk = pdo_query_one($sql);
+        return $tk;
     }
 ?>
