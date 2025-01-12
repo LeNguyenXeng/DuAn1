@@ -86,6 +86,15 @@ if(isset($_GET['act'])){
             break;
         // Product
         case "listproduct":
+            if (isset($_POST['listok'])&&($_POST['listok'])){
+            $kyw=$_POST['kyw'];
+            $id_dm=$_POST['iddm'];
+            } else{
+                $kyw = '';
+                $id_dm = '0';
+            }
+            $listdanhmuc = loadAll_danhmuc();
+            $listsanpham = loadAll_sanpham($kyw, $id_dm);
             include "view/products/list.php";
             break;
         case "addproduct":
@@ -113,12 +122,17 @@ if(isset($_GET['act'])){
            
             include "view/products/add.php";
             break;
-        case "addproduct1":
-                include "view/products/add.php";
-                break;
         case "updateproduct":
             include "view/products/update.php";
             break;
+            case "deleteproduct":
+                if(isset($_GET['id'])&&($_GET['id']>0)){
+                    delete_sanpham($_GET['id']);
+                }
+                $listsanpham = loadAll_sanpham("",0);
+            include "view/products/list.php";
+
+                break;
             
         // Category
         case "listcategory":
