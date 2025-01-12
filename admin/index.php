@@ -29,24 +29,48 @@ if(isset($_GET['act'])){
             }
             include "view/account/update.php";
             break;  
-        case "editaccount":
-            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                $id_nguoidung = $_POST['id_nguoidung'];
-                $email = $_POST['email'];
-                $matkhau = $_POST['matkhau'];
-                $diachi = $_POST['diachi'];
-                $sdt = $_POST['sdt'];
-                $role = $_POST['role'];
-                $hoten = $_POST['hoten'];
-                $sql = "UPDATE nguoi_dung set hoten='".$hoten."', email='".$email."', matkhau='".$matkhau."', diachi='".$diachi."', sdt='".$sdt."', role='".$role."' where id_nguoidung=".$id_nguoidung;
-                pdo_execute($sql);
-                $thongbao = "Cập nhật thành công";
-                header("location: index.php?act=listaccount");
-            }
-            $sql = "SELECT * FROM nguoi_dung order by id_nguoidung desc";
-            $listnguoidung = pdo_query($sql);
-            include "view/account/update.php";
-            break;
+            case "editaccount":
+                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id_nguoidung = $_POST['id_nguoidung'];
+                    $email = $_POST['email'];
+                    $matkhau = $_POST['matkhau'];
+                    $diachi = $_POST['diachi'];
+                    $sdt = $_POST['sdt'];
+                    $role = $_POST['role'];
+                    $hoten = $_POST['hoten'];
+            
+                    $sql = "UPDATE nguoi_dung SET hoten='".$hoten."', email='".$email."', matkhau='".$matkhau."', diachi='".$diachi."', sdt='".$sdt."', role='".$role."' WHERE id_nguoidung=".$id_nguoidung;
+                    pdo_execute($sql);
+            
+                    if ($_SESSION['user']['id_nguoidung'] == $id_nguoidung) {
+                        $_SESSION['user']['hoten'] = $hoten;
+                        $_SESSION['user']['email'] = $email;
+                        $_SESSION['user']['matkhau'] = $matkhau;
+                        $_SESSION['user']['diachi'] = $diachi;
+                        $_SESSION['user']['sdt'] = $sdt;
+                        $_SESSION['user']['role'] = $role;
+                    }
+            
+                    $thongbao = "Cập nhật thành công";
+            
+                    if ($_SESSION['user']['id_nguoidung'] == $id_nguoidung) {
+                        header("location: index.php?act=listaccount");
+                    } else {
+                        header("location: index.php?act=listaccount");
+                    }
+                    exit();
+                }
+            
+                if(isset($_GET['id']) && $_GET['id'] > 0){
+                    $sql = "SELECT * FROM nguoi_dung WHERE id_nguoidung=".$_GET['id'];
+                    $tk = pdo_query_one($sql);
+                }
+                include "view/account/update.php";
+                break;
+            case "accountdetail":
+                
+                include "view/account/accountdetail.php";
+                break;
 
         case 'deleteaccount':
             if(isset($_GET['id'])&&($_GET['id']>0)){
