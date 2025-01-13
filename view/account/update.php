@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+.field-icon {
+    cursor: pointer;
+    float: right;
+    margin-right: 8px;
+    margin-top: -28px;
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    margin: auto;
+}
+</style>
 
 <head>
     <title>Update Account</title>
@@ -45,8 +59,9 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="tkmk form-label">Mật khẩu</label>
-                <input type="text" id="myInput" class="inputform form-control" id="exampleInputPassword1"
-                    value="<?php echo $matkhau ?>" name="matkhau">
+                <input type="password" id="password-field" class="inputform form-control" value="<?php echo $matkhau ?>"
+                    name="matkhau">
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
             </div>
             <div class="mb-3">
@@ -69,4 +84,3 @@
     </div>
     <?php
  include "view/footer.php";
-?>

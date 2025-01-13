@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>List Account</title>
+    <title>Account Detail</title>
     <style>
     body {
         margin-top: 20px;
@@ -118,7 +118,9 @@
                             <img style="margin-top: 20px;" class="img-account-profile rounded-circle mb-2"
                                 src="../resources/assets/img/avatar.png" alt="">
                             <!-- Profile picture help block-->
-                            <div style="font-size: 16px;" class="small mt-2 text-muted mb-4"><?php echo $hoten ?></div>
+                            <div style="font-size: 16px; font-weight: bold;" class="small mt-2 text-muted mb-4">
+                                <?php echo $hoten ?>
+                            </div>
                             <!-- Profile picture upload button-->
                         </div>
                     </div>

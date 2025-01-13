@@ -19,7 +19,12 @@ if(isset($_GET['act'])){
     switch ($act) {
         // Account
         case "listaccount":
-            $listnguoidung = loadall_nguoidung();
+            if (isset($_POST['listok'])&&($_POST['listok'])){
+                $kyw=$_POST['kyw'];
+            } else{
+                    $kyw = '';
+            }
+            $listnguoidung = loadall_nguoidung($kyw);
             include "view/account/list.php";
             break;
         case "updateaccount":
@@ -76,7 +81,7 @@ if(isset($_GET['act'])){
             if(isset($_GET['id'])&&($_GET['id']>0)){
                 delete_taikhoan($_GET['id']);
             }
-            $listnguoidung = loadall_nguoidung();
+            $listnguoidung = loadall_nguoidung('');
             include "view/account/list.php";
             break;
 

@@ -20,6 +20,18 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Danh Sách Tài Khoản</h6>
             </div>
+            <form class="timkiem" action="index.php?act=listaccount" method="post"
+                style="display: flex; gap: 5px; margin-top: 20px;  margin-left: 20px;">
+                <div class="btn-timkiem">
+                    <input type="email"
+                        style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px;"
+                        placeholder="  Tìm kiếm..." name="kyw">
+                </div>
+                <div class="btn-nuttimkiem">
+                    <input name="listok" type="submit" class="btn btn-outline-secondary" value="Tìm Kiếm"
+                        style="width: 100px; height: 35px; border-radius: 5px;">
+                </div>
+            </form>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
