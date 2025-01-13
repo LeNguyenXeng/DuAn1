@@ -18,8 +18,19 @@
         $tk = pdo_query_one($sql);
         return $tk;
     }
-    function loadall_nguoidung(){
-        $sql = "SELECT * FROM nguoi_dung ORDER by id_nguoidung desc";
+    function loadall_nguoidung($kyw) {
+        // Bắt đầu với câu lệnh SELECT cơ bản
+        $sql = "SELECT * FROM nguoi_dung WHERE 1";
+        
+        // Kiểm tra nếu biến $kyw không rỗng
+        if ($kyw != "") {
+            $sql .= " AND email LIKE '%" . $kyw . "%'";
+        }
+        
+        // Sắp xếp kết quả theo id_nguoidung giảm dần
+        $sql .= " ORDER BY id_nguoidung DESC";
+        
+        // Thực hiện truy vấn và trả về kết quả
         $listnguoidung = pdo_query($sql);
         return $listnguoidung;
     }
