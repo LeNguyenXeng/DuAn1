@@ -25,7 +25,20 @@
                 <div class="btn-timkiem">
                     <input type="email"
                         style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px;"
-                        placeholder="  Tìm kiếm..." name="kyw">
+                        placeholder="  Tìm kiếm theo email..." name="kyw">
+                </div>
+                <div class="btn-danhmuc">
+                    <select name="role"
+                        style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px; color: rgb(116, 116, 116);">
+                        <option value="-1" selected>Tất cả vai trò</option>
+                        <?php
+                        foreach($listrole as $role){
+                            extract($role);
+                            echo '<option value="'.$role.'">'.$role.' </option>';
+                        }
+                        ?>
+
+                    </select>
                 </div>
                 <div class="btn-nuttimkiem">
                     <input name="listok" type="submit" class="btn btn-outline-secondary" value="Tìm Kiếm"

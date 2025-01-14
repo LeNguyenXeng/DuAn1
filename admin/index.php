@@ -21,10 +21,13 @@ if(isset($_GET['act'])){
         case "listaccount":
             if (isset($_POST['listok'])&&($_POST['listok'])){
                 $kyw=$_POST['kyw'];
+                $role=$_POST['role'];
             } else{
-                    $kyw = '';
+                $kyw = '';
+                $role = '-1';
             }
-            $listnguoidung = loadall_nguoidung($kyw);
+            $listnguoidung = loadall_nguoidung($kyw,$role);
+            $listrole = loadall_role();
             include "view/account/list.php";
             break;
         case "updateaccount":

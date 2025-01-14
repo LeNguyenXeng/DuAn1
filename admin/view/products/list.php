@@ -19,7 +19,8 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Danh Sách Sản Phẩm</h6>
             </div>
-            <form class="timkiem" action="index.php?act=listproduct" method="post" style="display: flex; gap: 5px; margin-top: 20px;  margin-left: 20px;">
+            <form class="timkiem" action="index.php?act=listproduct" method="post"
+                style="display: flex; gap: 5px; margin-top: 20px;  margin-left: 20px;">
                 <div class="btn-timkiem">
                     <input type="text"
                         style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px;"
@@ -35,7 +36,7 @@
                             echo '<option value="'.$id_dm.' " >'.$ten_danhmuc.' </option>';
                         }
                         ?>
-                       
+
                     </select>
                 </div>
                 <div class="btn-nuttimkiem">
@@ -100,7 +101,7 @@
                             </tr>';
                               }
                             ?>
-                            
+
                         </tbody>
                     </table>
                 </div>
