@@ -29,9 +29,7 @@
                                 <th>Họ Tên Người Đặt</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Địa Chỉ</th>
-                                <th>Email</th>
-                                <th>Tổng Tiền</th>
-                                <th>Phương Thức Thanh Toán</th>
+                                <th>Ngày Mua</th>
                                 <th>Trạng Thái</th>
                                 <th>Hành Động</th>
                             </tr>
@@ -42,10 +40,8 @@
                                 <td>SWE161197</td>
                                 <td>Lê Nguyên Tùng</td>
                                 <td>0396180619</td>
-                                <td>Số Nhà 11, Ngõ 82, Phố Mễ Trì Hạ, Phường Mễ Trì, Quận Nam Từ Liêm </td>
-                                <td>tunglnph49038@gmail.com </td>
-                                <td>679,000 VNĐ</td>
-                                <td>Thanh toán khi nhận hàng</td>
+                                <td>HN</td>
+                                <td>14-1-2025 </td>
                                 <td>Chờ xác nhận</td>
                                 <td>
                                     <a href="index.php?act=editmanage" class="btn btn-info btn-circle">

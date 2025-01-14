@@ -105,6 +105,9 @@ if(isset($_GET['act'])){
         case "success":
             include "view/pay/success.php";
             break;
+        case "billdetail":
+            include "view/pay/billdetail.php";
+            break;
         
     default:
         include "view/home.php";
