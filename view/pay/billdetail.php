@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bill</title>
+    <title>Bill Detail</title>
 
     <?php
     include "view/header.php";
@@ -17,11 +17,10 @@
             </a>
 
             <span class="stext-109 cl4">
-                Bill
+                Bill Detail
             </span>
         </div>
     </div>
-    <!-- Shoping Cart -->
     <div class="container">
         <div style="    margin-top: 25px; margin-bottom: 50px;">
             <h4
@@ -32,32 +31,41 @@
                 <table class="table table-hover">
                     <thead>
                         <tr style="font-family: Popspismedium, sans-serif; font-size: 14px;">
-                            <th scope="col">Mã Đơn Hàng</th>
-                            <th scope="col">Tổng Tiền</th>
-                            <th scope="col">Địa Chỉ</th>
-                            <th scope="col">Trạng Thái</th>
-                            <th scope="col">Hành Động</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Giá tiền</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                            <td>#SWE270405</td>
-                            <td>450,000₫</td>
-                            <td>Khu phố 8, Thị Trấn Thiệu Hóa, Huyện Thiệu Hóa, Tỉnh Thanh Hóa</td>
-                            <td>Chờ xác nhận</td>
-                            <td><button class="btn btn-outline-danger">Hủy</button>
-                                <a href="index.php?act=billdetail">
-                                    <button type="button" class="btn btn-outline-info">Xem Chi Tiết</button>
-                                </a>
-
-                            </td>
+                            <td>2</td>
+                            <td>1,850,000₫</td>
+                            <td><img src="http://127.0.0.1:5501/images/product-detail-01.jpg" style="width: 100px;"
+                                    alt=""></td>
+                            <td>CREW LS JERSEY - RED</td>
+                            <td>2,700,000₫</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p style="font-size: 16x; margin-top: 20px; font-family: Popspismedium, sans-serif; text-align: right;">Tổng
+                Tiền: <span style="color: red; margin-left: 5px; font-size: 16x;">2,700,000₫</span></p>
+
+            <a href="index.php?act=bill">
+                <button
+                    style="display: flex; margin: 0 auto; font-family: Popspismedium; font-size: 14px; margin-top: 20px;"
+                    type="button" class="btn btn-info">Quay lại đơn hàng</button>
+            </a>
+
         </div>
 
+
     </div>
+    </div>
+    </div>
+
     <?php
     include "view/footer.php";
 ?>
