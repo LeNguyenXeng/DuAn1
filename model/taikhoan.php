@@ -18,19 +18,20 @@
         $tk = pdo_query_one($sql);
         return $tk;
     }
-    function loadall_nguoidung($kyw) {
-        // Bắt đầu với câu lệnh SELECT cơ bản
+    function loadall_nguoidung($kyw, $role) {
         $sql = "SELECT * FROM nguoi_dung WHERE 1";
         
-        // Kiểm tra nếu biến $kyw không rỗng
         if ($kyw != "") {
             $sql .= " AND email LIKE '%" . $kyw . "%'";
         }
+        if ($role !== '0' && $role > 0) {
+            $sql .= " and role = '" . $role . "'";
+        } elseif ($role === '0') {
+            $sql .= " and role = 0";
+        }
         
-        // Sắp xếp kết quả theo id_nguoidung giảm dần
         $sql .= " ORDER BY id_nguoidung DESC";
         
-        // Thực hiện truy vấn và trả về kết quả
         $listnguoidung = pdo_query($sql);
         return $listnguoidung;
     }
@@ -42,5 +43,10 @@
         $sql = "SELECT * FROM nguoi_dung WHERE id_nguoidung=".$id_nguoidung;
         $tk = pdo_query_one($sql);
         return $tk;
+    }
+    function loadall_role() {
+        $sql = "SELECT DISTINCT role FROM nguoi_dung ORDER BY role";
+        $listrole = pdo_query($sql);
+        return $listrole;
     }
 ?>
