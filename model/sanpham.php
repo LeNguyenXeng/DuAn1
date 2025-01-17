@@ -24,12 +24,16 @@ function loadone_sanpham ($id_sp){
     $sql ="select * from san_pham where id_sp=".$id_sp;
     $sanpham =pdo_query_one($sql);
     return $sanpham;
-}
-function                 update_sanpham($id,$id_dm,$tensp,$giasp,$mota,$hinh){
-    if($hinh!="")
-    $sql="update san_pham set id_dm='".$id_dm."',name='".$tensp."',,price='".$giasp."',mota='".$mota."',img='".$hinh."' where id=".$id;
-    else
-     $sql="update san_pham set id_dm='".$id_dm."',name='".$tensp."',price='".$giasp."',mota='".$mota."' where id=".$id;
-
+}function update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh) {
+    if ($hinh != "") {
+        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "', anhsp='" . $hinh . "', ngaycapnhat = now() WHERE id_sp=" . $id_sp;
+    } else {
+        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "',ngaycapnhat = now() WHERE id_sp=" . $id_sp;
+    }
     pdo_execute($sql);
+}
+function loadAll_sanpham_home(){
+    $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc limit 0,16";
+    $listsanpham =pdo_query_one($sql);
+    return $listsanpham;
 }

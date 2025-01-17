@@ -7,6 +7,7 @@ include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/pdo.php";
 include "../model/sanpham.php";
+
 if(!isset($_SESSION['user'])){
     header('location: login.php');
     exit();
@@ -87,7 +88,7 @@ if(isset($_GET['act'])){
             if(isset($_GET['id'])&&($_GET['id']>0)){
                 delete_taikhoan($_GET['id']);
             }
-            $listnguoidung = loadall_nguoidung('');
+            $listnguoidung = loadall_nguoidung('', '');
             include "view/account/list.php";
             break;
 
@@ -133,28 +134,55 @@ if(isset($_GET['act'])){
            
             include "view/products/add.php";
             break;
-        case "updateproduct":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $sanpham = loadone_sanpham($_GET['id']);
-            }
-            $listdanhmuc = loadall_danhmuc();
-            include "view/products/update.php";
-            break;
-            case "deleteproduct":
-                if(isset($_GET['id'])&&($_GET['id']>0)){
-                    delete_sanpham($_GET['id']);
+            case "updateproduct":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $sanpham = loadone_sanpham($_GET['id']);
                 }
-                $listsanpham = loadAll_sanpham("",0);
-            include "view/products/list.php";
-
-                break;
-            case "sua":
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $sanpham = loadone_sanpham($_GET['id']);        
+                $listdanhmuc = loadall_danhmuc();
+            
+                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id_dm = $_POST['iddm'];
+                    $id_sp = $_POST['id_sp'];
+                    $hang = $_POST['hang'];
+                    $tensp = $_POST['tensp'];
+                    $giasp = $_POST['giasp'];
+                    $mota = $_POST['mota'];
+                    $hinh = ""; // Khởi tạo biến hinh
+            
+                    // Xử lý hình ảnh
+                    if (isset($_FILES['hinh']) && $_FILES['hinh']['error'] == 0) {
+                        $hinh = $_FILES['hinh']['name'];
+                        $target_dir = "../upload/";
+                        $target_file = $target_dir . basename($hinh);
+            
+                        if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                            // Tệp đã được tải lên thành công
+                        } else {
+                            // Xử lý lỗi tải lên nếu cần
+                        }
+                    } else {
+                        // Nếu không tải lên hình ảnh mới, giữ nguyên tên hình ảnh cũ
+                        $hinh = $sanpham['anhsp']; // Giữ lại hình ảnh cũ
                     }
-                    $list_dm = loadAll_danhmuc();
-                    include "view/products/update.php";
-                    break;
+            
+                    // Cập nhật sản phẩm
+                    update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh);
+                    header("location: index.php?act=listproduct");
+                    exit; // Thêm exit sau header để dừng thực thi
+                }
+            
+                $listsanpham = loadAll_sanpham('', '');
+                include "view/products/update.php";
+                break;
+       
+        case "deleteproduct":
+            if(isset($_GET['id'])&&($_GET['id']>0)){
+                delete_sanpham($_GET['id']);
+            }
+            $listsanpham = loadAll_sanpham("",0);
+            include "view/products/list.php";
+            break;
+    
         // Category
         case "listcategory":
             $list_dm=loadAll_danhmuc();
