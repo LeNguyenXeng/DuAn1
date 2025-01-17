@@ -1,7 +1,8 @@
 <?php 
 function  loadAll_danhmuc(){
-    $sql = "SELECT * FROM `danh_muc`";
-    return pdo_query($sql);
+    $sql = "SELECT * FROM `danh_muc` ORDER by id_dm desc";
+    $listdanhmuc = pdo_query($sql);
+    return $listdanhmuc;
 }
 function  loadAll_iddanhmuc($id_dm){
     $sql = "SELECT * FROM `danh_muc` where id_dm = $id_dm";
