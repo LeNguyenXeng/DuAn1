@@ -38,7 +38,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-sync-alt"></i>
                                 </span>
-                                    <input class="btn btn-primary" type="submit" name="sua" id="" value="Cập Nhật" >
+                                    <input class="btn btn-primary" type="submit" name="sua" id="" value="Cập Nhật Danh Mục" >
                             </a>
                         </form>
                     </table>

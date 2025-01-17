@@ -1,4 +1,6 @@
 <?php
+
+
 ob_start();
 session_start();
 include "../model/danhmuc.php";
@@ -14,6 +16,7 @@ if($userRole !== 1){
     header('location: login.php');
     exit();
 }
+
 if(isset($_GET['act'])){
     $act = $_GET['act'];
     switch ($act) {
@@ -131,6 +134,10 @@ if(isset($_GET['act'])){
             include "view/products/add.php";
             break;
         case "updateproduct":
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $sanpham = loadone_sanpham($_GET['id']);
+            }
+            $listdanhmuc = loadall_danhmuc();
             include "view/products/update.php";
             break;
             case "deleteproduct":
@@ -141,7 +148,13 @@ if(isset($_GET['act'])){
             include "view/products/list.php";
 
                 break;
-            
+            case "sua":
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    $sanpham = loadone_sanpham($_GET['id']);        
+                    }
+                    $list_dm = loadAll_danhmuc();
+                    include "view/products/update.php";
+                    break;
         // Category
         case "listcategory":
             $list_dm=loadAll_danhmuc();
@@ -174,6 +187,7 @@ if(isset($_GET['act'])){
                     update_dm($id_dm, $ten_danhmuc);
                 }
                 $list_dm = loadAll_danhmuc();
+                
                 include "view/category/list.php";                
                 break;
         case "xoadm":

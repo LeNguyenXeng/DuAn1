@@ -20,10 +20,16 @@ function loadAll_sanpham($kyw, $id_dm) {
     $listsanpham=pdo_query($sql);
     return $listsanpham;
 }
-function loadone_sanpham ($id){
-    $sql ="select * from san_pham where id=".$id;
+function loadone_sanpham ($id_sp){
+    $sql ="select * from san_pham where id_sp=".$id_sp;
+    $sanpham =pdo_query_one($sql);
+    return $sanpham;
 }
-function update_sanpham($id,$tenloai) {
-    $sql="update san_pham set name='".$tenloai."' where id=".$id;
+function                 update_sanpham($id,$id_dm,$tensp,$giasp,$mota,$hinh){
+    if($hinh!="")
+    $sql="update san_pham set id_dm='".$id_dm."',name='".$tensp."',,price='".$giasp."',mota='".$mota."',img='".$hinh."' where id=".$id;
+    else
+     $sql="update san_pham set id_dm='".$id_dm."',name='".$tensp."',price='".$giasp."',mota='".$mota."' where id=".$id;
+
     pdo_execute($sql);
 }
