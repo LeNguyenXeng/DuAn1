@@ -2,6 +2,9 @@
 session_start();
 include "model/taikhoan.php";
 include "model/pdo.php";
+include "model/sanpham.php";
+
+$spnew = loadAll_sanpham_home();
 
 
 if(isset($_GET['act'])){
