@@ -1,7 +1,7 @@
 <?php
 
             extract($onesp);
-            var_dump($onesp);
+           
            
             ?>
 <!DOCTYPE html>
