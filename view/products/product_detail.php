@@ -1,3 +1,9 @@
+<?php
+
+            extract($onesp);
+            var_dump($onesp);
+           
+            ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +29,8 @@
             </a>
 
             <span class="stext-109 cl4">
-                CREW LS JERSEY - RED
+            <?= $tensp ?>
+
             </span>
         </div>
     </div>
@@ -41,7 +48,7 @@
                             <div class="slick3 gallery-lb">
                                 <div class="item-slick3" data-thumb="./resources/assets/img/product-detail-01.jpg">
                                     <div class="wrap-pic-w pos-relative">
-                                        <img src="./resources/assets/img/product-detail-01.jpg" alt="IMG-PRODUCT">
+                                        <img src="./upload/<?=$anhsp?>" alt="IMG-PRODUCT">
 
                                         <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
                                             href="./resources/assets/img/product-detail-01.jpg">
@@ -59,19 +66,17 @@
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                            CREW LS JERSEY - RED
+                        <?= $tensp ?>
+
                         </h4>
 
                         <span class="mtext-106 cl2">
-                            $17,75
+                           <?= $gia ?>
                         </span>
 
                         <p style="font-family: Poppins, sans-serif; font-size: 14px; line-height: 1.7;"
                             class=" cl3 p-t-23">
-                            CREW LS JERSEY - Chiếc áo tay dài mới được thiết kế theo phong cách thể thao với điểm nhấn
-                            nằm ở họa tiết mặt trước, mặt sau và 2 bên tay áo được sử dụng chất liệu in kéo lụa sắc nét.
-                            Phần thân áo và tay áo được may phối viền nổi bật. Áo sử dụng vải mesh lưới tạo cảm giác
-                            thoải mái và thoáng mát hơn cho bạn khi vận động.
+                            <?= $mota?>
                         </p>
 
                         <!--  -->
@@ -195,20 +200,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                    ACREW LS JERSEY - Chiếc áo tay dài mới được thiết kế theo phong cách thể
-                                    thao với
-                                    điểm nhấn nằm ở họa tiết mặt trước, mặt sau và 2 bên tay áo được sử dụng
-                                    chất liệu
-                                    in kéo lụa sắc nét. Phần thân áo và tay áo được may phối viền nổi bật. Áo sử
-                                    dụng
-                                    vải mesh lưới tạo cảm giác thoải mái và thoáng mát hơn cho bạn khi vận động.
-                                    <br>
-                                    <br>
-
-                                    Áo Jersey SWE vẫn được sử dụng POLYESTER 100%, định lượng 210gsm, thiết kế
-                                    form áo
-                                    LS JERSEY nên chất lượng các bạn có thể hoàn toàn yên tâm với sản phẩm nhà
-                                    SWE.
+                                <?= $mota?>
                             </div>
                         </div>
 
@@ -279,7 +271,7 @@
                                                 <p class="stext-102 cl6">
                                                     Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
                                                     ủng hộ
-                                                    tiếp. Chất lượng là số 1!!
+                                                 tiếp. Chất lượng là số 1!!
                                                 </p>
                                             </div>
                                         </div>
