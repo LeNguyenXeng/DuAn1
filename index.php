@@ -92,10 +92,11 @@ if(isset($_GET['act'])){
             break;
         // Product
         case "productdetail":
+            if(isset($_GET['idsp'])){
+                $onesp=loadone_sanpham($_GET['idsp']);
+            }
             include "view/products/product_detail.php";
             break;
-        
-
         // Pay
         case "checkout":
             include "view/pay/checkout.php";
