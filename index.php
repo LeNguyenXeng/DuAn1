@@ -3,6 +3,7 @@ session_start();
 include "model/taikhoan.php";
 include "model/pdo.php";
 include "model/sanpham.php";
+include "global.php";
 
 $spnew = loadAll_sanpham_home();
 

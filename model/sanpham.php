@@ -34,6 +34,6 @@ function loadone_sanpham ($id_sp){
 }
 function loadAll_sanpham_home(){
     $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc limit 0,16";
-    $listsanpham =pdo_query_one($sql);
+    $listsanpham =pdo_query($sql);
     return $listsanpham;
 }
