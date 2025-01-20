@@ -33,7 +33,12 @@ function loadone_sanpham ($id_sp){
     pdo_execute($sql);
 }
 function loadAll_sanpham_home(){
-    $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc limit 0,16";
+    $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc limit 0,8";
+    $listsanpham =pdo_query($sql);
+    return $listsanpham;
+}
+function loadAll_sanpham_shop(){
+    $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc";
     $listsanpham =pdo_query($sql);
     return $listsanpham;
 }
