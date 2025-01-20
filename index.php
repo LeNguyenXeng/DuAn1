@@ -12,6 +12,8 @@ if(isset($_GET['act'])){
     $act = $_GET['act'];
     switch ($act) {
         case "shop":
+$spnew = loadAll_sanpham_shop();
+
             include "view/shop.php";
             break;
         case 'shoppingcart':
