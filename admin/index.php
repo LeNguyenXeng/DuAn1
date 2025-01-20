@@ -79,8 +79,7 @@ if(isset($_GET['act'])){
                 }
                 include "view/account/update.php";
                 break;
-            case "accountdetail":
-                
+        case "accountdetail":
                 include "view/account/accountdetail.php";
                 break;
 
@@ -130,8 +129,6 @@ if(isset($_GET['act'])){
                 $thongbao="Thêm thành công";
             }
             $list_dm = loadAll_danhmuc();
-            // var_dump($list_dm);
-           
             include "view/products/add.php";
             break;
             case "updateproduct":

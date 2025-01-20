@@ -51,26 +51,27 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Giá Sản Phẩm</label>
                             <input type="number" min="0" class="form-control" id="exampleInputEmail1" name="giasp"
-                                aria-describedby="emailHelp"placeholder="Nhập giá sản phẩm " >
+                                aria-describedby="emailHelp" placeholder="Nhập giá sản phẩm ">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Hình Ảnh Sản Phẩm</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" name="hinh"
                                     style="cursor: pointer;" placeholder="Nhập hình ảnh sản phẩm">
-                                <label class="custom-file-label" for="customFile">Choose file</label >
+                                <label class="custom-file-label" for="customFile">Chọn tệp</label>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Mô Tả</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="mota" placeholder="Nhập mô tả sản phẩm "></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="mota"
+                                placeholder="Nhập mô tả sản phẩm "></textarea>
                         </div>
                         <a class="btn btn-primary btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <input type="submit" class="btn btn-primary"  name="themmoi" value="Thêm Sản Phẩm"></span>
-                            </a>
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <input type="submit" class="btn btn-primary" name="themmoi" value="Thêm Sản Phẩm"></span>
+                        </a>
                         </form>
                     </table>
 

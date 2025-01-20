@@ -9,6 +9,7 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +19,7 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
     <title>Cập Nhật Sản Phẩm</title>
     <?php include "view/header.php"; ?>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="card shadow mb-4">
@@ -42,15 +44,18 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
                             </div>
                             <div class="mb-3">
                                 <label for="hang" class="form-label">Hãng</label>
-                                <input type="text" class="form-control" id="hang" name="hang" value="<?php echo $hang ?>" required>
+                                <input type="text" class="form-control" id="hang" name="hang"
+                                    value="<?php echo $hang ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="tensp" class="form-label">Tên Sản Phẩm</label>
-                                <input type="text" class="form-control" id="tensp" name="tensp" value="<?php echo $tensp ?>" required>
+                                <input type="text" class="form-control" id="tensp" name="tensp"
+                                    value="<?php echo $tensp ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="giasp" class="form-label">Giá Sản Phẩm</label>
-                                <input type="number" min="0" class="form-control" id="giasp" name="giasp" value="<?php echo $gia ?>" required>
+                                <input type="text" min="0" class="form-control" id="giasp" name="giasp"
+                                    value="<?php echo number_format($gia, 0, '', ',')?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="customFile" class="form-label">Hình Ảnh Sản Phẩm</label>
@@ -62,14 +67,15 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
                             </div>
                             <div class="mb-3 mt-5">
                                 <label for="mota" class="form-label">Mô Tả</label>
-                                <textarea class="form-control" id="mota" rows="8" name="mota"><?php echo $mota ?></textarea>
+                                <textarea class="form-control" id="mota" rows="8"
+                                    name="mota"><?php echo $mota ?></textarea>
                             </div>
                             <a href="index.php?act=listproduct" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-sync-alt"></i>
                                 </span>
-                            <input name="id_sp" type="hidden" value="<?php echo $id_sp ?>">
-                            <input name="capnhat" type="submit" value="Cập Nhật Sản Phẩm" class="btn btn-primary">
+                                <input name="id_sp" type="hidden" value="<?php echo $id_sp ?>">
+                                <input name="capnhat" type="submit" value="Cập Nhật Sản Phẩm" class="btn btn-primary">
                             </a>
 
                         </table>
@@ -80,4 +86,5 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
     </div>
     <?php include "view/footer.php"; ?>
 </body>
+
 </html>

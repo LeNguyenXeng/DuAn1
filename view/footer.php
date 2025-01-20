@@ -120,7 +120,7 @@
                 </div>
 
                 <p class="stext-107 cl6 txt-center">
-                    Copyright &copy; 2024 SWE (STREETWEAREAZY) | Powered by Group 4</a>
+                    Copyright &copy; 2024 SWE (STREETWEAREAZY) | Powered by Group 8</a>
                 </p>
             </div>
         </div>
@@ -245,7 +245,6 @@ function myFunction() {
     </script>
     <!--===============================================================================================-->
     <script src="./resources/assets/js/main.js"></script>
-    ?>
 
     <script>
 $(".toggle-password").click(function() {

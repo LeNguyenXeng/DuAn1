@@ -1,9 +1,6 @@
 <?php
-
-            extract($onesp);
-           
-           
-            ?>
+ extract($onesp);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +14,7 @@
     <hr style="margin-top: 84px">
     <!-- breadcrumb -->
     <div class="container">
-        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-20 p-lr-0-lg">
             <a href="home.html" class="stext-109 cl8 hov-cl1 trans-04">
                 Home
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
@@ -29,7 +26,7 @@
             </a>
 
             <span class="stext-109 cl4">
-            <?= $tensp ?>
+                <?php echo $tensp ?>
 
             </span>
         </div>
@@ -41,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-7 p-b-30">
-                    <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="p-l-25 p-lr-0-lg">
                         <div class="wrap-slick3 flex-sb flex-w">
                             <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
@@ -51,7 +48,7 @@
                                         <img src="./upload/<?=$anhsp?>" alt="IMG-PRODUCT">
 
                                         <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                            href="./resources/assets/img/product-detail-01.jpg">
+                                            href="./upload/<?=$anhsp?>">
                                             <i class="fa fa-expand"></i>
                                         </a>
                                     </div>
@@ -65,18 +62,18 @@
 
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
-                        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                        <?= $tensp ?>
+                        <h4 class="mtext-105 cl2 js-name-detail p-b-14" style="font-family: Poppins">
+                            <?php echo $tensp ?>
 
                         </h4>
 
                         <span class="mtext-106 cl2">
-                           <?= $gia ?>
+                            <?php echo number_format($gia, 0, '', ','). '₫';  ?>
                         </span>
 
-                        <p style="font-family: Poppins, sans-serif; font-size: 14px; line-height: 1.7;"
+                        <p style="font-family: Poppins-Regular, sans-serif; font-size: 14px; line-height: 1.7;"
                             class=" cl3 p-t-23">
-                            <?= $mota?>
+                            <?php echo $mota ?>
                         </p>
 
                         <!--  -->
@@ -200,7 +197,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                <?= $mota?>
+                                    <?php echo $mota ?>
                             </div>
                         </div>
 
@@ -271,7 +268,7 @@
                                                 <p class="stext-102 cl6">
                                                     Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
                                                     ủng hộ
-                                                 tiếp. Chất lượng là số 1!!
+                                                    tiếp. Chất lượng là số 1!!
                                                 </p>
                                             </div>
                                         </div>
@@ -351,204 +348,43 @@
             <!-- Slide2 -->
             <div class="wrap-slick2">
                 <div class="slick2">
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                    <?php
+ foreach  ($spnew as $sp) {
+    extract($sp); 
+    $hinh=$img_path.$anhsp; 
+    $gia = number_format($gia, 0, '', ','). '₫'; 
+    echo '
+     <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-01.jpg" alt="IMG-PRODUCT">
+                                <img src='.$hinh.' alt="IMG-PRODUCT">
 
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
+                    <a href="index.php?act=shoppingcart"
+                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                        Add To Cart
+                    </a>
+                </div>
 
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        CREW LS JERSEY - RED
-                                    </a>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                    <div class="block2-txt-child1 flex-col-l ">
+                       <a href="index.php?act=productdetail&idsp='.$id_sp.'" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                            '.$tensp.'
+                    </a>
 
-                                    <span class="stext-105 cl3">
-                                        450,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-02.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        CREW LS JERSEY - BLACK
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        450,000₫
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-03.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        EDGE WASHED JEANS - BLUE
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        650,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-04.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        EDGE WASHED JEANS - LIGHT BLUE
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        650,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-05.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        NIGHTSTAR BACKPACK
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        420,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-06.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        S LETTER CAP - BLUE
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        250,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="./resources/assets/img/product-07.jpg" alt="IMG-PRODUCT">
-
-                                <a href="index.php?act=shoppingcart"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Add To Cart
-                                </a>
-                            </div>
-
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="index.php?act=productdetail"
-                                        class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        E LETTER CAP - BEIGE
-                                    </a>
-
-                                    <span class="stext-105 cl3">
-                                        250,000₫
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
+                    <span class="stext-105 cl3">
+                       '.$gia.'
+                    </span>
                 </div>
             </div>
+        </div>
+        </div>';
+        }
+        ?>
+
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
