@@ -431,6 +431,7 @@
                 foreach  ($spnew as $sp) {
                     extract($sp); 
                     $hinh=$img_path.$anhsp; 
+                    $gia = number_format($gia, 0, '', ','). '₫'; 
                              
                     echo '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
@@ -461,9 +462,9 @@
                 </div>';
                 }
                 ?>
-  
+
             </div>
     </section>
     <?php
-    include "footer.php";
+    include "footer.php"
 ?>

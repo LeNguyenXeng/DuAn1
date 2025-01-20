@@ -37,3 +37,5 @@ function loadAll_sanpham_home(){
     $listsanpham =pdo_query($sql);
     return $listsanpham;
 }
+
+?>

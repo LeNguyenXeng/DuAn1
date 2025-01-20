@@ -250,11 +250,17 @@
             </div>
 
             <div class="row isotope-grid">
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <?php
+                    foreach ($spnew as $sp) {
+                        extract($sp);
+                        $hinh=$img_path.$anhsp; 
+                    $gia = number_format($gia, 0, '', ','). '₫';
+                        echo '
+                        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="./resources/assets/img/product-01.jpg" alt="IMG-PRODUCT">
+                            <img src='.$hinh.' alt="IMG-PRODUCT">
 
                             <a href="index.php?act=shoppingcart"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
@@ -264,103 +270,21 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    CREW LS JERSEY - RED
+                                <a href="index.php?act=productdetail&idsp='.$id_sp.'" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                   '.$tensp.'
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    450,000₫
+                                    '.$gia.'
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="./resources/assets/img/product-02.jpg" alt="IMG-PRODUCT">
-
-                            <a href="index.php?act=shoppingcart"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                Add To Cart
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    CREW LS JERSEY - BLACK
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    450,000₫
-                                </span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="./resources/assets/img/product-03.jpg" alt="IMG-PRODUCT">
-
-                            <a href="index.php?act=shoppingcart"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                Add To Cart
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    EDGE WASHED JEANS - BLUE
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    650,000₫
-                                </span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="./resources/assets/img/product-04.jpg" alt="IMG-PRODUCT">
-
-                            <a href="index.php?act=shoppingcart"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                Add To Cart
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    EDGE WASHED JEANS - LIGHT BLUE
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    650,000₫
-                                </span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-
+                        ';
+                    }
+                
+                ?>
 
             </div>
         </div>
