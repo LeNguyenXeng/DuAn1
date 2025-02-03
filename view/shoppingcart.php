@@ -45,6 +45,8 @@ if (is_array($spadd) && !empty($spadd)) {
         $ttien = $sp['soluong'] * $sp['price']; // Tính tổng tiền cho sản phẩm
         $tong += $ttien;
         $hinh = $img_path . $sp['anhsp']; // Đường dẫn ảnh
+        $soluong = (int)$sp['soluong'];
+        $price = (float)$sp['price'];
         $xoa = "index.php?act=deletesp&name=" . $sp['name']; // Đường dẫn xóa sản phẩm
         echo '
             <tr class="table_row">
@@ -75,6 +77,8 @@ if (is_array($spadd) && !empty($spadd)) {
     echo '<tr><td colspan="7">Giỏ hàng trống.</td></tr>'; // Nếu giỏ hàng trống
 }
 ?>
+<?php
+echo'
                         </table>
                         <div class="div" style="display: flex; justify-content: center; padding-top: 18px; gap: 20px;">
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
@@ -85,7 +89,7 @@ if (is_array($spadd) && !empty($spadd)) {
                                 href="index.php?act=shop">quay lai</a>
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-                                href="index.php?act=delcart">Xóa giỏ hàng</a>
+                                href="index.php?act=deleteall&id_nguoidung='.$id_nguoidung.'" name="deleteall">Xóa giỏ hàng</a>
 
                         </div>
 
@@ -97,7 +101,7 @@ if (is_array($spadd) && !empty($spadd)) {
             </div>
         </div>
     </div>
-    
+    '?>
     <?php
     include "footer.php";
     ?>

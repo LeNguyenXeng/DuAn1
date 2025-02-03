@@ -21,4 +21,8 @@ function deletesp($id_nguoidung, $name) {
     $sql = "DELETE FROM gio_hang WHERE id_nguoidung = $id_nguoidung AND name = '$name'";
     pdo_execute2($sql);
 }
+function deleteall($id_nguoidung) {
+    $sql = "DELETE FROM gio_hang WHERE id_nguoidung = $id_nguoidung";
+    pdo_execute2($sql);
+}
 ?>

@@ -115,28 +115,42 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="flex-w flex-r-m p-b-10">
+                            <!-- <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-204 flex-w flex-m respon6-next">
                                     <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
-                                        </div>
+                                        
 
                                         <input class="mtext-104 cl3 txt-center num-product" type="number"
                                             name="num-product" value="1">
 
+                                        
+                                    </div> -->
+                            <?php
+                    echo' <form action="index.php?act=shoppingcart" method="post" >
+                        <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-204 flex-w flex-m respon6-next">
+                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                        
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number"
+                                            name="num-product" value="1" min="1" max="'.$soluong.'">
                                         <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
                                         </div>
                                     </div>
+                            <input type="hidden" name="hinh" value="' . $anhsp . '"> <!-- Thêm dòng này -->
+                                <input type="hidden" name="id_sp" value="' . $id_sp . '">
+                                <input type="hidden" name="tensp" value="' . $tensp . '">
+                                <input type="hidden" name="gia" value="' . $gia . '">
+                                <button type="submit" name="addtocart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15" style="cursor:pointer">
+                                    Thêm vào giỏ hàng
+                                </button>
+                            </form>';
 
-                                    <a href="index.php?act=shoppingcart">
-                                        <input type="button"
-                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15"
-                                            value="Thêm vào giỏ hàng" style="cursor:pointer">
-                                        </input>
-                                    </a>
+                        ?>
+                        
                                 </div>
                             </div>
                         </div>

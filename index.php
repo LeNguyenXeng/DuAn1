@@ -16,14 +16,17 @@ if(isset($_GET['act'])){
             break;
             case 'shoppingcart':
                 $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                if (!isset($id_nguoidung)) {
+                    header("Location: index.php?act=login");
+                    exit();
+                }
                 $spadd = get_cart_items($id_nguoidung);
                 if (isset($_POST['addtocart'])) {
-                    $soluong = 1;
+                    $soluong = isset($_POST['num-product']) ? (int)$_POST['num-product'] : 1;
                     $price = $_POST['gia'];
                     $anhsp = $_POST['hinh'];
                     $name = $_POST['tensp'];
                     $existingProduct = check_product_in_cart($id_nguoidung, $name);
-            
                     if ($existingProduct) {
                         update_cart_quantity($id_nguoidung, $name, $soluong);
                     } else {
@@ -48,6 +51,19 @@ if(isset($_GET['act'])){
                    }
                     include "view/shoppingcart.php";
                     break;
+                        case "deleteall":
+                            if (isset($_SESSION['user']['id_nguoidung'])) {
+                                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                                deleteall($id_nguoidung);
+                                header("Location: index.php?act=shoppingcart");
+                                exit();
+                            }
+                           else {
+                            header("Location: index.php?act=login");
+        
+                           }
+                        include "view/shoppingcart.php";
+                        break;
         case "about":
             include "view/about.php";
             break;  
