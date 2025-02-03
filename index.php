@@ -2,30 +2,58 @@
 session_start();
 include "model/taikhoan.php";
 include "model/pdo.php";
+include "model/giohang.php";
 include "model/sanpham.php";
 include "global.php";
 
 $spnew = loadAll_sanpham_home();
-
-
 if(isset($_GET['act'])){
     $act = $_GET['act'];
     switch ($act) {
         case "shop":
-$spnew = loadAll_sanpham_shop();
-
+                $spnew = loadAll_sanpham_shop();
             include "view/shop.php";
             break;
-        case 'shoppingcart':
-            include "view/shoppingcart.php";
-            break;
+            case 'shoppingcart':
+                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                $spadd = get_cart_items($id_nguoidung);
+                if (isset($_POST['addtocart'])) {
+                    $soluong = 1;
+                    $price = $_POST['gia'];
+                    $anhsp = $_POST['hinh'];
+                    $name = $_POST['tensp'];
+                    $existingProduct = check_product_in_cart($id_nguoidung, $name);
+            
+                    if ($existingProduct) {
+                        update_cart_quantity($id_nguoidung, $name, $soluong);
+                    } else {
+                        insert($id_nguoidung, $soluong, $price, $anhsp, $name);
+                    }
+                    header("Location: index.php?act=shoppingcart");
+                    exit();
+                }
+                include "view/shoppingcart.php";
+                break;    
+                case "deletesp":
+                    if (isset($_SESSION['user']['id_nguoidung'])) {
+                        $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                        $name = $_GET['name'];
+                        deletesp($id_nguoidung, $name);
+                        header("Location: index.php?act=shoppingcart");
+                        exit();
+                    }
+                   else {
+                    header("Location: index.php?act=login");
+
+                   }
+                    include "view/shoppingcart.php";
+                    break;
         case "about":
             include "view/about.php";
             break;  
         case "contact":
             include "view/contact.php";
             break;
-
         // Account
         case "login":
             if(isset($_POST['dangnhap'])&&($_POST['dangnhap'])){
