@@ -6,7 +6,7 @@
 
     <?php
     include "header.php";
-?>
+    ?>
     <hr style="margin-top: 84px">
     <!-- breadcrumb -->
     <div class="container">
@@ -35,60 +35,61 @@
                                 <th class="column-5">Đơn giá</th>
                                 <th class="column-6">Thành tiền</th>
                                 <th class="column-7">Thao tác</th>
-                            </tr>
-                            <tr class="table_row">
-                                <td class="column-1">1</td>
-                                <td class="column-2">COLLAR SHIRT - WHITE</td>
-                                <td class="column-3">
-                                    <div class="how-itemcart1">
-                                        <img src="./resources/assets/img/item-cart-05.jpg" alt="IMG">
-                                    </div>
-                                </td>
-                                <td class="column-4">
-                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
-                                        </div>
+                            </tr>                            
+                            <?php
+$tong = 0;
 
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                            name="num-product2" value="1">
+if (is_array($spadd) && !empty($spadd)) {
 
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="column-5">380,000₫</td>
-                                <td class="column-6">380,000₫</td>
-
-                                <td class="column-7">
-                                    <a>
-                                        <input type="button" class="btn btn-outline-danger" value="Xóa">
-                                    </a>
-                                </td>
-                            </tr>
+    foreach ($spadd as $stt => $sp) { // Sử dụng $stt để đếm thứ tự
+        $ttien = $sp['soluong'] * $sp['price']; // Tính tổng tiền cho sản phẩm
+        $tong += $ttien;
+        $hinh = $img_path . $sp['anhsp']; // Đường dẫn ảnh
+        $soluong = (int)$sp['soluong'];
+        $price = (float)$sp['price'];
+        $xoa = "index.php?act=deletesp&name=" . $sp['name']; // Đường dẫn xóa sản phẩm
+        echo '
+            <tr class="table_row">
+                <td class="column-1">' . ($stt + 1) . '</td>
+                <td class="column-2">' . $sp['name'] . '</td>
+                <td class="column-3">
+                    <div class="how-itemcart1">
+                        <img src="' . $hinh . '" alt="IMG">
+                    </div>
+                </td>
+                <td class="column-4">' . $sp['soluong'] . '</td>
+                <td class="column-5">' . number_format(floatval($sp['price'])) . ' VNĐ</td>
+                <td class="column-6">' . number_format(floatval($ttien)) . ' VNĐ</td>
+                <td class="column-7">
+                    <input type="button" class="btn btn-outline-danger"value="Xóa" onclick="window.location.href=\'' . $xoa . '\'">
+                </td>
+            </tr> ';
+    }
+    echo '
+    <tr>
+        <td colspan="5" style="text-align:right; font-weight: bold; font-size: 18px;">Tổng tiền:</td>
+        <td class="column-6" style="font-weight: bold; font-size: 20px; color: #e74c3c; text-align:center;">
+            ' . number_format($tong) . ' VNĐ
+        </td>
+        <td class="column-7"></td>
+    </tr>';
+} else {
+    echo '<tr><td colspan="7">Giỏ hàng trống.</td></tr>'; // Nếu giỏ hàng trống
+}
+?>
+<?php
+echo'
                         </table>
-                        <br>
-                        <div style="display: flex; margin: 15px 46px 35px; font-size: 17px;">
-                            <p style="font-family: Poppins, sans-serif;">
-                                Tổng Tiền:
-                            </p>
-                            <span
-                                style="color: red; margin-left: 10px;     font-family: Poppins, sans-serif;">10.000.000đ</span>
-                        </div>
-                        <hr>
-
                         <div class="div" style="display: flex; justify-content: center; padding-top: 18px; gap: 20px;">
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-                                href="index.php?act=checkout">Thanh
-                                Toán</a>
+                                href="index.php?act=checkout">Thanh toan</a>
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 200px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-                                href="index.php?act=shop">Tiếp tục mua hàng</a>
+                                href="index.php?act=shop">quay lai</a>
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-                                href="index.php?act=delcart">Xóa giỏ hàng</a>
+                                href="index.php?act=deleteall&id_nguoidung='.$id_nguoidung.'" name="deleteall">Xóa giỏ hàng</a>
 
                         </div>
 
@@ -100,8 +101,7 @@
             </div>
         </div>
     </div>
-
-
+    '?>
     <?php
     include "footer.php";
-?>
+    ?>

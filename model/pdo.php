@@ -42,4 +42,15 @@
         $kq = $sql->fetch(PDO::FETCH_ASSOC);
         return $kq;
     }
-    
+    function pdo_query_one2($sql, $params = []) {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params); // Truyền tham số vào execute
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }    
+    function pdo_execute2($sql, $params = [])
+{
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($params); // Đảm bảo truyền đúng tham số
+}

@@ -428,33 +428,34 @@
             <div class="row isotope-grid">
                 <?php
                  
-                foreach  ($spnew as $sp) {
-                    extract($sp); 
-                    $hinh=$img_path.$anhsp; 
-                    $gia = number_format($gia, 0, '', ','). '₫'; 
-                             
+                 foreach ($spnew as $sp) {
+                    extract($sp);
+                    $hinh = $img_path . $anhsp;
+                    // $gia = number_format($gia, 0, '', ',') . '₫';
+                
                     echo '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="'. $hinh.'" alt="IMG-PRODUCT">
-
-                            <a href="index.php?act=shoppingcart"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                Add To Cart
-                            </a>
+                            <img src="' . $hinh . '" alt="IMG-PRODUCT">
+                            <form action="index.php?act=shoppingcart" method="post" >
+                            <input type="hidden" name="hinh" value="' . $anhsp . '"> <!-- Thêm dòng này -->
+                                <input type="hidden" name="id_sp" value="' . $id_sp . '">
+                                <input type="hidden" name="tensp" value="' . $tensp . '">
+                                <input type="hidden" name="gia" value="' . $gia . '">
+                                <button type="submit" name="addtocart" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                    Add To Cart
+                                </button>
+                            </form>
                         </div>
-
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="index.php?act=productdetail&idsp='.$id_sp.'"
-                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    '.$tensp.'
-
+                                <a href="index.php?act=productdetail&idsp=' . $id_sp . '"
+                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6" name="tensp">
+                                    ' . $tensp . '
                                 </a>
-
-                                <span class="stext-105 cl3">
-                                    '.$gia.'
+                                <span class="stext-105 cl3" name="gia">
+                                    ' . $gia . '
                                 </span>
                             </div>
                         </div>
