@@ -5,19 +5,26 @@
     <title>Thay Đổi Thông Tin</title>
 
     <?php
-    include "view/header.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Bắt đầu session nếu chưa bắt đầu
+}
+include "view/header.php";
+$tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy tổng tiền từ session
 ?>
     <hr style="margin-top: 84px">
     <!-- breadcrumb -->
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-10 p-lr-0-lg">
-            <a href="home.html" class="stext-109 cl8 hov-cl1 trans-04">
+            <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
                 Home
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
-
+            <a href="index.php?act=shoppingcart" class="stext-109 cl8 hov-cl1 trans-04">
+                Shopping Cart
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
             <span class="stext-109 cl4">
-                Thay Đổi Thông Tin
+                Thay Đổi Thông Tin Mua Hàng
             </span>
         </div>
     </div>
@@ -38,7 +45,7 @@
 
                     <div class="size-209">
                         <span class="mtext-110 cl2">
-                            10.000.000đ
+                            <?php echo number_format($tong) . ' ₫'; ?>
                         </span>
                     </div>
                 </div>

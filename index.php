@@ -4,6 +4,7 @@ include "model/taikhoan.php";
 include "model/pdo.php";
 include "model/giohang.php";
 include "model/sanpham.php";
+include "model/cart.php";
 include "global.php";
 
 $spnew = loadAll_sanpham_home();
@@ -145,12 +146,30 @@ if(isset($_GET['act'])){
             break;
         // Pay
         case "checkout":
+            if(isset($_POST['dongydathang'])&&($_POST['dongydathang'])){
+                $hoten = $_POST['hoten'];
+                $email = $_POST['email'];
+                $diachi = $_POST['diachi'];
+                $sdt = $_POST['sdt'];
+                $pttt = $_POST['pttt'];
+                $ngaydathang = date('h:i:sa d-m-Y ');
+                $tongdonhang = tongdonhang();
+                
+                $idbill = insert_bill($tongdonhang, $hoten, $diachi, $email, $sdt, $ngaydathang, $pttt);
+
+                foreach ($_SESSION['user'] as $cart) {
+                    insert_cart(['user']['id'],$cart[0],$cart[1],$cart[3],$cart[4],$cart[5],$idbill);
+                }
+            }
+                
+            
             include "view/pay/checkout.php";
             break;
         case "changeinformation":
             include "view/pay/change_information.php";
             break;
         case "bill":
+           
             include "view/pay/bill.php";
             break;
         case "success":

@@ -18,6 +18,21 @@
         $sql = $conn->prepare($sql);
         $sql->execute();
     }
+
+    function pdo_execute_return_lastInsertId($sql)
+    {
+        $sql_args = array_slice(func_get_args(), 1);
+        try {
+            $conn = pdo_get_connection();
+            $stmt = $conn->prepare($sql);
+            $stmt = execute($sql_args);
+            return $conn->lastInsertId();
+        } catch (PDOException $e) {
+            throw $e;
+        } finally {
+            unset($conn);
+        }
+    }
     // truy vấn nhiều dữ liệu
     function pdo_query($sql, $params = [])
     {
@@ -32,7 +47,6 @@
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     // truy vấn  1 dữ liệu
     function pdo_query_one($sql)
     {

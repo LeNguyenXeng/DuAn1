@@ -11,7 +11,7 @@
     <!-- breadcrumb -->
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-10 p-lr-0-lg">
-            <a href="home.html" class="stext-109 cl8 hov-cl1 trans-04">
+            <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
                 Home
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
@@ -40,8 +40,9 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                            <td>#SWE270405</td>
+                            <!-- <td>#SWE270405</td>
                             <td>450,000₫</td>
                             <td>Khu phố 8, Thị Trấn Thiệu Hóa, Huyện Thiệu Hóa, Tỉnh Thanh Hóa</td>
                             <td>Chờ xác nhận</td>
@@ -50,8 +51,11 @@
                                     <button type="button" class="btn btn-outline-info">Xem Chi Tiết</button>
                                 </a>
 
-                            </td>
+                            </td> -->
                         </tr>
+
+
+
                     </tbody>
                 </table>
             </div>
