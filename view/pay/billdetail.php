@@ -11,7 +11,7 @@
     <!-- breadcrumb -->
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-10 p-lr-0-lg">
-            <a href="home.html" class="stext-109 cl8 hov-cl1 trans-04">
+            <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
                 Home
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
@@ -39,14 +39,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                            <td>2</td>
-                            <td>1,850,000₫</td>
-                            <td><img src="http://127.0.0.1:5501/images/product-detail-01.jpg" style="width: 100px;"
-                                    alt=""></td>
-                            <td>CREW LS JERSEY - RED</td>
-                            <td>2,700,000₫</td>
-                        </tr>
+                        <?php
+    if (!empty($billDetail) && is_array($billDetail)) {
+        foreach ($billDetail as $bill) {
+            extract($bill);
+            echo '
+            <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
+                <td>'.$soluong.'</td>
+                <td>'.$price.'₫</td>
+                <td><img src="http://127.0.0.1:5501/images/product-detail-01.jpg" style="width: 100px;" alt=""></td>
+                <td>'.$name.'</td>
+                <td>2,700,000₫</td>
+            </tr>
+            ';
+        }
+    } else {
+        echo '<tr><td colspan="5" style="text-align: center;">Không có chi tiết đơn hàng nào.</td></tr>';
+    }
+    ?>
                     </tbody>
                 </table>
             </div>

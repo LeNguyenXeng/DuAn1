@@ -455,7 +455,7 @@
                                     ' . $tensp . '
                                 </a>
                                 <span class="stext-105 cl3" name="gia">
-                                    ' . $gia . '
+                                    ' . number_format($gia, 0, '', ',') . '₫'. '
                                 </span>
                             </div>
                         </div>
