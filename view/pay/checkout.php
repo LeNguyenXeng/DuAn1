@@ -55,10 +55,11 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
                         </span>
                     </div>
 
-                    <form action="index.php?act=bill" method="POST" style="margin-top:20px">
+                    <form action="index.php?act=checkout" method="POST" style="margin-top:20px">
                         <table class="table-shopping-cart">
                             <?php
                         if (isset($_SESSION['user'])) {
+                           
                             $hoten = $_SESSION['user']['hoten'];
                             $diachi = $_SESSION['user']['diachi'];
                             $email = $_SESSION['user']['email'];
@@ -70,6 +71,7 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
                             $sdt = "";
                         }
                         ?>
+
                             <div class="bor8 bg0 m-b-12">
                                 <input style="height: 50px;" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
                                     name="hoten" value="<?php echo $hoten ?>" disabled>
@@ -94,27 +96,16 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
                                         Thanh Toán khi nhận hàng
                                     </label>
                                 </div>
-                                <div class="cl2" style="font-family: Poppins, sans-serif; text-transform: capitalize;">
-                                    <input class="form-check-input" type="radio" name="pttt" id="flexRadioDefault2"
-                                        checked>
-                                    <label for="flexRadioDefault2" style="font-size: 14px;">
-                                        Thanh toán với Momo
-                                    </label>
-                                </div>
                                 <div style="display: flex; justify-content: center; padding-top: 18px; gap: 20px;">
                                     <input type="submit"
                                         class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-                                        style="width: 50px; height: 41px; cursor: pointer;" href="index.php?act=success"
-                                        value="Đặt Hàng" name="dongydathang"></input>
-                                    <input type="submit"
+                                        style="width: 50px; height: 41px; cursor: pointer;" value="Đặt Hàng"
+                                        name="dongydathang"></input>
+                                    <a href="index.php?act=shop"
                                         class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-                                        style="width: 300px; height: 41px; cursor: pointer;"
-                                        href="index.php?act=changeinformation"
-                                        value="Thay đổi thông tin mua hàng"></input>
-                                    <input type="submit"
-                                        class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-                                        style="width: 220px; height: 41px; cursor: pointer;" href="index.php?act=shop"
-                                        value="Tiếp tục mua hàng"></input>
+                                        style="width: 220px; height: 41px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white;">
+                                        Tiếp tục mua hàng
+                                    </a>
                                 </div>
                             </div>
                         </table>

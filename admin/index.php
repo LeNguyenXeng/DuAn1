@@ -7,6 +7,7 @@ include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/pdo.php";
 include "../model/sanpham.php";
+include "../model/cart.php";
 
 if(!isset($_SESSION['user'])){
     header('location: login.php');
@@ -244,10 +245,15 @@ if(isset($_GET['act'])){
         
         // Manage
         case "listmanage":
+            $listBill = loadall_bill_admin(0);
             include "view/manage/list.php";
             break;
         case "editmanage":
             include "view/manage/edit.php";
+            break;
+        case "updatemanage":
+            
+            include "view/manage/update.php";
             break;
     default:
         include "view/home.php";
