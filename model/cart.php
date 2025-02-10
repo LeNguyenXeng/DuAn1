@@ -45,7 +45,6 @@ function load_trangthai(){
 function loadall_chitietdonhang($id){
     $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_donhang = $id ";
     return pdo_query($sql);
-    
 }
 function insert_checkout($hoten, $diachi, $email, $sdt, $pttt) {
     $sql = "INSERT INTO `don_hang`(`hoten`, `sdt`, `diachi`, `email`, `pttt`) 
@@ -67,3 +66,4 @@ function loadall_bill_admin($status = 0) {
     $sql .= " ORDER BY ngaydathang DESC";
     return pdo_query($sql);
 }
+?>

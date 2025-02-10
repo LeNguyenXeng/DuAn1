@@ -198,7 +198,7 @@ if (isset($_GET['act'])) {
                     $id = $_GET['id'];
                     $billDetail = loadall_chitietdonhang($id);
                 } else {
-                    $billDetail = []; // Đảm bảo biến được định nghĩa
+                    $billDetail = []; 
                 }
                 include "view/pay/billdetail.php";
                 break;

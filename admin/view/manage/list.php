@@ -19,6 +19,34 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Quản Lý Đơn Hàng</h6>
             </div>
+            <form method="GET" action="index.php?act=listmanage"
+                style="display: flex; gap: 5px; margin-top: 20px;  margin-left: 20px;">
+                <div class="btn-timkiem">
+                    <input type="text"
+                        style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px;"
+                        placeholder="  Tìm kiếm..." name="tendonhang">
+                </div>
+                <div class="input-group" style="width: 350px;">
+                    <input type="hidden" name="act" value="listmanage">
+                    <select class="form-control" name="filter_status"
+                        style="width: 200px; height: 35px; border: 1px solid #bebebe; border-radius: 5px; color: rgb(116, 116, 116);">
+                        <option value="" <?= ($filter_status == '') ? 'selected' : ''; ?>>Tất cả trạng thái</option>
+                        <option value="1" <?= ($filter_status == '1') ? 'selected' : ''; ?>>Chờ xác nhận</option>
+                        <option value="2" <?= ($filter_status == '2') ? 'selected' : ''; ?>>Đã xác nhận</option>
+                        <option value="3" <?= ($filter_status == '3') ? 'selected' : ''; ?>>Chờ lấy hàng</option>
+                        <option value="4" <?= ($filter_status == '4') ? 'selected' : ''; ?>>Đang giao hàng</option>
+                        <option value="5" <?= ($filter_status == '5') ? 'selected' : ''; ?>>Giao hàng thành công
+                        </option>
+                        <option value="6" <?= ($filter_status == '6') ? 'selected' : ''; ?>>Đã huỷ</option>
+                        <option value="6" <?= ($filter_status == '6') ? 'selected' : ''; ?>>Trả hàng</option>
+                    </select>
+                    <div class="input-group-append">
+                        <input class="btn btn-outline-secondary" type="submit" value="Tìm kiếm"
+                            style="width: 100px; height: 35px; border-radius: 5px; margin-left: 5px;"
+                            name="timkiemdonhang"></input>
+                    </div>
+                </div>
+            </form>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
