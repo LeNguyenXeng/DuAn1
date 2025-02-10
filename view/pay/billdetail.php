@@ -54,7 +54,9 @@
             ';
         }
     } else {
-        echo '<tr><td colspan="5" style="text-align: center;">Không có chi tiết đơn hàng nào.</td></tr>';
+        echo '<tr><td colspan="5" style="text-align: center;
+    color: red;
+    font-family: Popspismedium, sans-serif;">Không có chi tiết đơn hàng nào.</td></tr>';
     }
     ?>
                     </tbody>

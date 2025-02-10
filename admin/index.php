@@ -8,6 +8,7 @@ include "../model/taikhoan.php";
 include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/cart.php";
+include "../model/bill.php";
 
 if(!isset($_SESSION['user'])){
     header('location: login.php');
@@ -245,7 +246,12 @@ if(isset($_GET['act'])){
         
         // Manage
         case "listmanage":
-            $listBill = loadall_bill_admin(0);
+            $tendonhang = isset($_GET['tendonhang']) ? trim($_GET['tendonhang']) : '';
+            $filter_status = isset($_GET['filter_status']) ? trim($_GET['filter_status']) : '';
+            $listBill = loadall_bill_admin($filter_status);
+            if ($tendonhang != '') {
+                $listBill = loadall_donhang($tendonhang);
+            }
             include "view/manage/list.php";
             break;
         case "editmanage":
