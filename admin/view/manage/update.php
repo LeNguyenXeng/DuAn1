@@ -102,7 +102,7 @@ function getOrderStatusOptions($currentStatus) {
                                 </select>
                             </div>
                             <div style="margin-top: 10px">
-                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 <a href="index.php?act=listmanage" class="btn btn-secondary">Quay lại</a>
                             </div>
                         </form>

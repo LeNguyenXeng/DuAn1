@@ -63,7 +63,7 @@ function loadall_bill_admin($status = 0) {
     if ($status > 0) {
         $sql .= " WHERE id_trangthai = $status";
     }
-    $sql .= " ORDER BY ngaydathang DESC";
+    $sql .= " ORDER BY id_donhang DESC";
     return pdo_query($sql);
 }
 ?>
