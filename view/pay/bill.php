@@ -3,10 +3,12 @@
 
 <head>
     <title>Bill</title>
-
     <?php include "view/header.php"; ?>
     <hr style="margin-top: 84px">
-    <!-- breadcrumb -->
+</head>
+
+<body>
+    <!-- Breadcrumb -->
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-10 p-lr-0-lg">
             <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
@@ -16,14 +18,15 @@
             <span class="stext-109 cl4">Bill</span>
         </div>
     </div>
+
     <!-- Shopping Cart -->
     <div class="container">
         <div style="margin-top: 25px; margin-bottom: 50px;">
             <h4
                 style="font-family: semibold, sans-serif; font-size: 27px; color: black; margin-bottom: 40px; text-align: center;">
-                ĐƠN HÀNG CỦA TÔI</h4>
+                ĐƠN HÀNG CỦA TÔI
+            </h4>
             <div class="wrap-table-shopping-cart" style="border: 10px solid #f7f7f7;">
-
                 <table class="table table-hover">
                     <thead>
                         <tr style="font-family: Popspismedium, sans-serif; font-size: 14px;">
@@ -36,7 +39,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         <?php if (empty($bill)) { ?>
                         <tr>
                             <td colspan="6"
@@ -57,9 +59,8 @@
                             $list_phuongthucthanhtoan = [
                                 1 => "Thanh toán khi nhận hàng",
                             ];
-                            
 
-                            foreach ($bill as $mybill) {
+                            foreach ($bill as $mybill) {  
                                 extract($mybill);
                                 $trangthai_mo_ta = isset($list_trangthai[$id_trangthai]) ? $list_trangthai[$id_trangthai] : 'Không xác định';
                                 $phuongthuc = isset($list_phuongthucthanhtoan[$pttt]) ? $list_phuongthucthanhtoan[$pttt] : 'Không xác định';
@@ -71,12 +72,16 @@
                                    <td>'.$diachi.'</td>
                                    <td>'.$phuongthuc.'</td>
                                    <td>'.$trangthai_mo_ta.'</td>
-                                   <td> <a href="'.$xoa.'" class="btn btn-outline-danger" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này không?\');">Hủy</a>
-                                        <a href="index.php?act=billdetail&id_donhang='.$mybill['id_donhang'].'">
+                                   <td>';
+
+                                if ($id_trangthai < 4) {
+                                    echo '<a href="'.$xoa.'" class="btn btn-outline-danger" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này không?\');">Hủy</a>';
+                                }
+                                
+                                echo '<a href="index.php?act=billdetail&id_donhang='.$mybill['id_donhang'].'">
                                             <button type="button" class="btn btn-outline-info">Xem Chi Tiết</button>
                                         </a>
                                    </td>
-                                   
                                    </tr>';
                             }
                         } ?>
@@ -86,5 +91,6 @@
         </div>
     </div>
     <?php include "view/footer.php"; ?>
+</body>
 
 </html>
