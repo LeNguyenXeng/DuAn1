@@ -13,13 +13,10 @@ function loadall_donhang($tendonhang) {
     $listnguoidung = pdo_query($sql);
     return $listnguoidung;
 }
-function insert_chi_tiet_don_hang($id_donhang, $id_variant, $soluong, $price) {
-    $sql = "INSERT INTO chi_tiet_don_hang (id_donhang, id_variant, soluong, price) VALUES (:id_donhang, :id_variant, :soluong, :price)";
-    pdo_execute($sql, [
-        ':id_donhang' => $id_donhang,
-        ':id_variant' => $id_variant,
-        ':soluong' => $soluong,
-        ':price' => $price
-    ]);
+function insert_chi_tiet_don_hang($idbill, $soluong, $thanhtien, $img, $name, $price) {
+    // Câu lệnh SQL để chèn thông tin vào bảng chitietdonhang
+    $sql = "INSERT INTO chitietdonhang (id_donhang, soluong, thanhtien, img, name, price) VALUES (?, ?, ?, ?, ?, ?)";
+    // Thực thi câu lệnh SQL
+    pdo_execute($sql, $idbill, $soluong, $thanhtien, $img, $name, $price);
 }
 ?>

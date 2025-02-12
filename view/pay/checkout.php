@@ -117,7 +117,4 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Láº¥y tá»
 
     <?php
 include "view/footer.php";
-
-// Optionally, clear the total after checkout
-// unset($_SESSION['tong_tien']);
 ?>
