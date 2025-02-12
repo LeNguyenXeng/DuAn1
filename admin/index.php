@@ -136,6 +136,8 @@ if(isset($_GET['act'])){
             case "updateproduct":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $sanpham = loadone_sanpham($_GET['id']);
+                } else {
+                    $sanpham = null;
                 }
                 $listdanhmuc = loadall_danhmuc();
             
@@ -144,9 +146,9 @@ if(isset($_GET['act'])){
                     $id_sp = $_POST['id_sp'];
                     $hang = $_POST['hang'];
                     $tensp = $_POST['tensp'];
-                    $giasp = $_POST['giasp'];
+                    $giasp = str_replace(',', '', $_POST['giasp']); // Xử lý số
+                    $giasp = floatval($giasp);
                     $mota = $_POST['mota'];
-                    $hinh = ""; // Khởi tạo biến hinh
             
                     // Xử lý hình ảnh
                     if (isset($_FILES['hinh']) && $_FILES['hinh']['error'] == 0) {
@@ -160,19 +162,19 @@ if(isset($_GET['act'])){
                             // Xử lý lỗi tải lên nếu cần
                         }
                     } else {
-                        // Nếu không tải lên hình ảnh mới, giữ nguyên tên hình ảnh cũ
-                        $hinh = $sanpham['anhsp']; // Giữ lại hình ảnh cũ
+                        $hinh = ($sanpham && isset($sanpham['anhsp'])) ? $sanpham['anhsp'] : "";
                     }
             
                     // Cập nhật sản phẩm
                     update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh);
                     header("location: index.php?act=listproduct");
-                    exit; // Thêm exit sau header để dừng thực thi
+                    exit;
                 }
             
                 $listsanpham = loadAll_sanpham('', '');
                 include "view/products/update.php";
                 break;
+            
        
         case "deleteproduct":
             if(isset($_GET['id'])&&($_GET['id']>0)){

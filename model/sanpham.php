@@ -37,10 +37,15 @@ function loadAll_sanpham_home(){
     $listsanpham =pdo_query($sql);
     return $listsanpham;
 }
-function loadAll_sanpham_shop(){
-    $sql = "SELECT * FROM san_pham WHERE 1 order by id_sp desc";
-    $listsanpham =pdo_query($sql);
-    return $listsanpham;
+function loadAll_sanpham_shop($keyword = "")
+{
+    $sql = "SELECT * FROM san_pham WHERE 1";
+    if ($keyword != "") {
+        $sql .= " AND tensp LIKE '%" . $keyword . "%'";
+    }
+    $sql .= " ORDER BY id_sp DESC";
+    return pdo_query($sql);
 }
+
 
 ?>

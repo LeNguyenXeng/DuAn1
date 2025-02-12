@@ -16,7 +16,12 @@ if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
         case "shop":
-            $spnew = loadAll_sanpham_shop();
+            if (isset($_POST['keyword']) && $_POST['keyword'] != "") {
+                $keyword = $_POST['keyword'];
+                $spnew = loadAll_sanpham_shop($keyword);
+            } else {
+                $spnew = loadAll_sanpham_shop();
+            }
             include "view/shop.php";
             break;
         case 'shoppingcart':
@@ -167,7 +172,6 @@ if (isset($_GET['act'])) {
                 $tongtien = $_SESSION['tong_tien'];
 
                 $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
-
                 // Chuyển hướng tới trang xác nhận đơn hàng
                 header("location:index.php?act=success");
                 exit;
