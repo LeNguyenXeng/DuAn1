@@ -75,7 +75,10 @@ if (isset($_GET['act'])) {
             if (isset($_SESSION['user']['id_nguoidung'])) {
                 $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                 deleteall($id_nguoidung);
-                unset($_SESSION['gio_hang']);
+                if ($idbill) { // Kiểm tra nếu đơn hàng đã tạo thành công
+                    unset($_SESSION['gio_hang']);
+                }
+                
 
                 header("Location: index.php?act=shoppingcart");
                 exit();
@@ -187,16 +190,18 @@ if (isset($_GET['act'])) {
 
                 $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
                 // / Lưu chi tiết đơn hàng vào database
-                if (isset($_SESSION['gio_hang']) && count($_SESSION['gio_hang']) > 0) {
-                    foreach ($_SESSION['gio_hang'] as $key => $value) {
-                        $name = $value['tensp'];
-                        $image = $value['hinh'];
-                        $price = $value['gia'];
-                        $quantity = $value['soluong'];
+                $cart_items = get_cart_items($id_nguoidung); // Lấy tất cả sản phẩm trong giỏ từ database
+                if (!empty($cart_items)) {
+                    foreach ($cart_items as $item) {
+                        $name = $item['name'];
+                        $image = $item['anhsp'];
+                        $price = $item['price'];
+                        $quantity = $item['soluong'];
                         $total_price = $price * $quantity;
-                        insert_billdetail($idbill, $quantity, $total_price, $image, $name,$price ,null);
+                        insert_billdetail($idbill, $quantity, $total_price, $image, $name, $price, null);
                     }
                 }
+                
                 // Xóa giỏ hàng sau khi đặt hàng thành công
                 unset($_SESSION['gio_hang']);
                 // Chuyển hướng tới trang xác nhận đơn hàng
