@@ -10,11 +10,11 @@
     </style>
 
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start(); // Bắt đầu session nếu chưa bắt đầu
-    }
-    include "header.php";
-    ?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Bắt đầu session nếu chưa bắt đầu
+}
+include "header.php";
+?>
     <hr style="margin-top: 84px">
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-10 p-lr-0-lg">
@@ -44,51 +44,47 @@
                                 <th class="column-7">Thao tác</th>
                             </tr>
                             <?php
-                            $tong = 0;
+                        $tong = 0;
 
-                            // Lấy giỏ hàng từ session
-                            if (isset($_SESSION['gio_hang']) && !empty($_SESSION['gio_hang'])) {
-                                $spadd = $_SESSION['gio_hang']; // Lấy giỏ hàng từ session
-                                
-                                // Hiển thị từng sản phẩm trong giỏ hàng
-                                foreach ($spadd as $stt => $sp) {
-                                    $ttien = $sp['soluong'] * $sp['price'];
-                                    $tong += $ttien;
-                                    $hinh = $img_path . $sp['anhsp'];
-                                    $xoa = "index.php?act=deletesp&name=" . $sp['name'];
-
-                                    echo '
-                                        <tr class="table_row">
-                                            <td class="column-1">' . ($stt + 1) . '</td>
-                                            <td class="column-2">' . $sp['name'] . '</td>
-                                            <td class="column-3">
-                                                <div class="how-itemcart1">
-                                                    <img src="' . $hinh . '" alt="IMG">
-                                                </div>
-                                            </td>
-                                            <td class="column-4">' . $sp['soluong'] . '</td>
-                                            <td class="column-5">' . number_format(floatval($sp['price'])) . '₫</td>
-                                            <td class="column-6">' . number_format(floatval($ttien)) . '₫</td>
-                                            <td class="column-7">
-                                                <input style="cursor: pointer;" type="button" class="btn btn-outline-danger" value="Xóa" onclick="window.location.href=\'' . $xoa . '\'">
-                                            </td>
-                                        </tr>';
-                                }
-
-                                // Lưu tổng tiền vào session
-                                $_SESSION['tong_tien'] = $tong;
+                        if (is_array($spadd) && !empty($spadd)) {
+                            foreach ($spadd as $stt => $sp) {
+                                $ttien = $sp['soluong'] * $sp['price'];
+                                $tong += $ttien;
+                                $hinh = $img_path . $sp['anhsp'];
+                                $xoa = "index.php?act=deletesp&name=" . $sp['name'];
 
                                 echo '
-                                <tr>
-                                    <td colspan="5" style="padding-bottom: 20px; padding-top: 20px; text-align:right; font-weight: bold; font-size: 16px;">Tổng tiền:</td>
-                                    <td class="column-6" style="font-weight: bold; font-size: 16px; color: #e74c3c; text-align:center;">
-                                        ' . number_format($tong) . '₫
-                                    </td>
-                                </tr>';
-                            } else {
-                                echo '<tr><td style="color: red; font-weight: 600; padding-left: 40px; padding-bottom: 20px; padding-top: 20px;" colspan="7">Giỏ hàng trống.</td></tr>';
+                                    <tr class="table_row">
+                                        <td class="column-1">' . ($stt + 1) . '</td>
+                                        <td class="column-2">' . $sp['name'] . '</td>
+                                        <td class="column-3">
+                                            <div class="how-itemcart1">
+                                                <img src="' . $hinh . '" alt="IMG">
+                                            </div>
+                                        </td>
+                                        <td class="column-4">' . $sp['soluong'] . '</td>
+                                        <td class="column-5">' . number_format(floatval($sp['price'])) . '₫</td>
+                                        <td class="column-6">' . number_format(floatval($ttien)) . '₫</td>
+                                        <td class="column-7">
+                                            <input style="cursor: pointer;" type="button" class="btn btn-outline-danger" value="Xóa" onclick="window.location.href=\'' . $xoa . '\'">
+                                        </td>
+                                    </tr>';
                             }
-                            ?>
+
+                            // Lưu tổng tiền vào session
+                            $_SESSION['tong_tien'] = $tong;
+
+                            echo '
+                            <tr>
+                                <td colspan="5" style="padding-bottom: 20px; padding-top: 20px; text-align:right; font-weight: bold; font-size: 16px;">Tổng tiền:</td>
+                                <td class="column-6" style="font-weight: bold; font-size: 16px; color: #e74c3c; text-align:center;">
+                                    ' . number_format($tong) . '₫
+                                </td>
+                            </tr>';
+                        } else {
+                            echo '<tr><td style="color: red; font-weight: 600; padding-left: 40px; padding-bottom: 20px; padding-top: 20px;" colspan="7">Giỏ hàng trống.</td></tr>';
+                        }
+                        ?>
                         </table>
                         <div class="div" style="display: flex; justify-content: center; padding-top: 18px; gap: 20px;">
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
@@ -108,5 +104,5 @@
         </div>
     </div>
     <?php
-    include "footer.php";
-    ?>
+include "footer.php";
+?>
