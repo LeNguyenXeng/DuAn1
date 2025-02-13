@@ -8,8 +8,10 @@ include "model/cart.php";
 include "model/bill.php";
 include "global.php";
 
+echo '<pre>';
+print_r($_SESSION['gio_hang']);
+echo '</pre>';
 
-// var_dump( $_SESSION['tong_tien']);
 
 $spnew = loadAll_sanpham_home();
 if (isset($_GET['act'])) {
@@ -42,6 +44,20 @@ if (isset($_GET['act'])) {
                 } else {
                     insert($id_nguoidung, $soluong, $price, $anhsp, $name);
                 }
+                // Kiểm tra sản phẩm có trong session chưa
+                if (isset($_SESSION['gio_hang'][$name])) {
+                    // Cập nhật số lượng trong session
+                    $_SESSION['gio_hang'][$name]['soluong'] += $soluong;
+                } else {
+                    // Thêm sản phẩm vào session
+                    $_SESSION['gio_hang'][$name] = array(
+                        'soluong' => $soluong,
+                        'gia' => $price,
+                        'hinh' => $anhsp,
+                        'tensp' => $name
+                    );
+                }
+
                 header("Location: index.php?act=shoppingcart");
                 exit();
             }
@@ -172,6 +188,7 @@ if (isset($_GET['act'])) {
                 $tongtien = $_SESSION['tong_tien'];
 
                 $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
+                
                 // Chuyển hướng tới trang xác nhận đơn hàng
                 header("location:index.php?act=success");
                 exit;
