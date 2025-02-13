@@ -43,7 +43,7 @@ function load_trangthai(){
     return $trangthaidonhang;
 }
 function loadall_chitietdonhang($id){
-    $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_donhang = $id ";
+    $sql = "SELECT * FROM `chi_tiet_don_hang` WHERE id_donhang = $id ";
     return pdo_query($sql);
 }
 function insert_checkout($hoten, $diachi, $email, $sdt, $pttt) {

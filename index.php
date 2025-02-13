@@ -8,11 +8,6 @@ include "model/cart.php";
 include "model/bill.php";
 include "global.php";
 
-echo '<pre>';
-print_r($_SESSION['gio_hang']);
-echo '</pre>';
-
-
 $spnew = loadAll_sanpham_home();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -68,6 +63,7 @@ if (isset($_GET['act'])) {
                 $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                 $name = $_GET['name'];
                 deletesp($id_nguoidung, $name);
+                unset($_SESSION['gio_hang'][$name]);
                 header("Location: index.php?act=shoppingcart");
                 exit();
             } else {
@@ -79,6 +75,8 @@ if (isset($_GET['act'])) {
             if (isset($_SESSION['user']['id_nguoidung'])) {
                 $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                 deleteall($id_nguoidung);
+                unset($_SESSION['gio_hang']);
+
                 header("Location: index.php?act=shoppingcart");
                 exit();
             } else {
@@ -188,7 +186,19 @@ if (isset($_GET['act'])) {
                 $tongtien = $_SESSION['tong_tien'];
 
                 $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
-                
+                // / Lưu chi tiết đơn hàng vào database
+                if (isset($_SESSION['gio_hang']) && count($_SESSION['gio_hang']) > 0) {
+                    foreach ($_SESSION['gio_hang'] as $key => $value) {
+                        $name = $value['tensp'];
+                        $image = $value['hinh'];
+                        $price = $value['gia'];
+                        $quantity = $value['soluong'];
+                        $total_price = $price * $quantity;
+                        insert_billdetail($idbill, $quantity, $total_price, $image, $name,$price ,null);
+                    }
+                }
+                // Xóa giỏ hàng sau khi đặt hàng thành công
+                unset($_SESSION['gio_hang']);
                 // Chuyển hướng tới trang xác nhận đơn hàng
                 header("location:index.php?act=success");
                 exit;
@@ -215,11 +225,9 @@ if (isset($_GET['act'])) {
             include "view/pay/success.php";
             break;
             case "billdetail":
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                    $billDetail = loadall_chitietdonhang($id);
-                } else {
-                    $billDetail = []; 
+                if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
+                    $id = $_GET['id_donhang'];
+                    $billdetail = loadall_chitietdonhang($id);
                 }
                 include "view/pay/billdetail.php";
                 break;
