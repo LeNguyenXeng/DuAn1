@@ -3,7 +3,6 @@
 
 <head>
     <title>Bill Detail</title>
-
     <?php
     include "view/header.php";
 ?>
@@ -39,31 +38,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-    if (!empty($billDetail) && is_array($billDetail)) {
-        foreach ($billDetail as $bill) {
+
+                        <?php 
+           foreach ($billdetail as $bill) {
+            $hinh = $img_path . $bill['img'];
             extract($bill);
-            echo '
-            <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                <td>'.$soluong.'</td>
-                <td>'.$price.'₫</td>
-                <td><img src="http://127.0.0.1:5501/images/product-detail-01.jpg" style="width: 100px;" alt=""></td>
-                <td>'.$name.'</td>
-                <td>2,700,000₫</td>
-            </tr>
-            ';
+            $formatted_price = number_format($price, 0, '', '.') . 'đ';
+            $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
+            echo '<tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
+                        <td>'.$soluong.'</td>
+                        <td>'.$formatted_price.'</td>  <!-- Sử dụng giá đã định dạng -->
+                        <td><img src="'.$hinh.'" style="width: 100px;" alt=""></td>
+                        <td>'.$name.'</td>
+                        <td>'.$formatted_thanhtien.'</td>  <!-- Sử dụng thành tiền đã định dạng -->
+                    </tr>';
         }
-    } else {
-        echo '<tr><td colspan="5" style="text-align: center;
-    color: red;
-    font-family: Popspismedium, sans-serif;">Không có chi tiết đơn hàng nào.</td></tr>';
-    }
-    ?>
+    
+?>
                     </tbody>
                 </table>
             </div>
             <p style="font-size: 16x; margin-top: 20px; font-family: Popspismedium, sans-serif; text-align: right;">Tổng
-                Tiền: <span style="color: red; margin-left: 5px; font-size: 16x;">2,700,000₫</span></p>
+                Tiền: <span style="color: red; margin-left: 5px; font-size: 16x;">1000000đ</span></p>
 
             <a href="index.php?act=bill">
                 <button
