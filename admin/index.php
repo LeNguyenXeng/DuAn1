@@ -9,6 +9,7 @@ include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/cart.php";
 include "../model/bill.php";
+include "../global.php";
 
 if(!isset($_SESSION['user'])){
     header('location: login.php');
@@ -257,10 +258,13 @@ if(isset($_GET['act'])){
             include "view/manage/list.php";
             break;
         case "editmanage":
+            if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
+                $id = $_GET['id_donhang'];
+                $billdetail = loadall_chitietdonhang($id);
+            }
             include "view/manage/edit.php";
             break;
         case "updatemanage":
-            
             include "view/manage/update.php";
             break;
     default:

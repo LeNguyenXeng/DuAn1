@@ -80,7 +80,7 @@
                                 extract($bill);
                                 $trangthai_mo_ta = isset($list_trangthai[$id_trangthai]) ? $list_trangthai[$id_trangthai] : 'Không xác định';
                                 $phuongthuc = isset($list_phuongthucthanhtoan[$pttt]) ? $list_phuongthucthanhtoan[$pttt] : 'Không xác định';
-                                // Xác định màu sắc dựa trên trạng thái
+                                
     $style = '';
     if ($trangthai_mo_ta == "Đã huỷ") {
         $style = 'style="color: red;"';
@@ -99,7 +99,7 @@
                                 <td>'.$ngaydathang.'</td>
                                <td '.$style.'>'.$trangthai_mo_ta.'</td>
                                 <td>
-                                    <a href="index.php?act=editmanage" class="btn btn-info btn-circle">
+                                    <a href="index.php?act=editmanage&id_donhang='.$id_donhang.'" class="btn btn-info btn-circle">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
                                     <a href="index.php?act=updatemanage&id='.$id_donhang.'" class="btn btn-success btn-circle">

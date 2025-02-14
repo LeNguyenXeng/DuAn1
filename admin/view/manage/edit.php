@@ -18,7 +18,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Cập Nhật Trạng Thái Đơn Hàng</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Chi Tiết Đơn Hàng</h6>
             </div>
 
             <div class="card-body">
@@ -26,23 +26,40 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Tên Danh Mục</th>
-                                <th>Ngày tạo</th>
-                                <th>Ngày sửa</th>
-                                <th>Hành Động</th>
+                                <th>ID Đơn hàng</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Hình Ảnh</th>
+                                <th>Giá</th>
+                                <th>Số Lượng</th>
+                                <th>Thành Tiền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <th>Tên Danh Mục</th>
-                                <th>Tên Danh Mục</th>
-                                <th>Tên Danh Mục</th>
-                                <th>Tên Danh Mục</th>
-                            </tr>
+                            <?php 
+                            $tongtien = 0;
+                            foreach ($billdetail as $bill) {
+                            $tongtien += $bill['thanhtien'];
+                            $hinh = "../upload/" . $bill['img'];
+                               extract($bill);
+                               $formatted_price = number_format($price, 0, '', '.') . 'đ';
+                               $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
+                               echo ' <tr>
+                                <td>'.$id_donhang .'</td>
+                                <td>'.$name.'</td>
+                               <td><img src="'.$hinh.'" alt="'.$name.'" style="max-width: 100px; max-height: 100px;"></td>
+                                <td>'.$formatted_price.'</td>
+                                <td>'.$soluong.'</td>
+                                <td>'.$formatted_thanhtien.'</td>
+                            </tr>';
+                            } ?>
+
                         </tbody>
                     </table>
+                    <p style="font-size: 16px; margin-right: 18px; text-align: right; font-weight: 700;">
+                        Tổng
+                        Tiền: <span
+                            style="color: red; margin-left: 5px; font-size: 16x;"><?php echo number_format($tongtien, 0, '', '.') . 'đ' ?></span>
+                    </p>
                     <a href="index.php?act=listmanage" class="btn btn-primary btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-undo"></i>
@@ -54,7 +71,6 @@
         </div>
 
     </div>
-
     </div>
     <?php
     include "view/footer.php";

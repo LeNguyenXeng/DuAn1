@@ -30,26 +30,28 @@
                 <table class="table table-hover">
                     <thead>
                         <tr style="font-family: Popspismedium, sans-serif; font-size: 14px;">
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Hình ảnh</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giá tiền</th>
-                            <th scope="col">Hình ảnh</th>
-                            <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <?php 
+            $tongtien = 0;
            foreach ($billdetail as $bill) {
+            $tongtien += $bill['thanhtien'];
             $hinh = $img_path . $bill['img'];
             extract($bill);
             $formatted_price = number_format($price, 0, '', '.') . 'đ';
             $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
             echo '<tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
+                        <td>'.$name.'</td>       
+                        <td><img src="'.$hinh.'" style="width: 100px;" alt=""></td>     
                         <td>'.$soluong.'</td>
                         <td>'.$formatted_price.'</td>  <!-- Sử dụng giá đã định dạng -->
-                        <td><img src="'.$hinh.'" style="width: 100px;" alt=""></td>
-                        <td>'.$name.'</td>
                         <td>'.$formatted_thanhtien.'</td>  <!-- Sử dụng thành tiền đã định dạng -->
                     </tr>';
         }
@@ -58,8 +60,12 @@
                     </tbody>
                 </table>
             </div>
-            <p style="font-size: 16x; margin-top: 20px; font-family: Popspismedium, sans-serif; text-align: right;">Tổng
-                Tiền: <span style="color: red; margin-left: 5px; font-size: 16x;">1000000đ</span></p>
+            <p
+                style="font-size: 16px; margin-right: 18px; margin-top: 20px; font-family: Popspismedium, sans-serif; text-align: right;">
+                Tổng
+                Tiền: <span
+                    style="color: red; margin-left: 5px; font-size: 16x;"><?php echo number_format($tongtien, 0, '', '.') . 'đ' ?></span>
+            </p>
 
             <a href="index.php?act=bill">
                 <button
