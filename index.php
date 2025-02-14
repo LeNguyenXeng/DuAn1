@@ -91,9 +91,15 @@ if (isset($_GET['act'])) {
                 if (isset($_SESSION['user']['id_nguoidung']) && isset($_GET['id_donhang'])) {
                     $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                     $id_donhang = $_GET['id_donhang'];
-                    deletebill($id_donhang);
-                    header("Location: index.php?act=bill");
-                    exit();
+                    
+                    // Giả sử trạng thái "Đã hủy" là 6
+                    if (updateOrderStatus($id_donhang, 6)) {
+                        header("Location: index.php?act=bill");
+                        exit();
+                    } else {
+                        // Xử lý lỗi nếu cập nhật không thành công
+                        echo "Cập nhật trạng thái đơn hàng thất bại.";
+                    }
                 }
                 break;
         case "about":

@@ -18,5 +18,12 @@ function insert_billdetail($id_donhang, $soluong, $thanhtien, $img, $name, $pric
             VALUES ('$id_donhang', '$soluong', '$thanhtien', '$img', '$name', '$price', " . ($id_variant !== null ? "'$id_variant'" : "NULL") . ")";
     pdo_execute($sql);
 }
+$pdo = pdo_get_connection();
+function updateOrderStatus($id_donhang, $new_status) {
+    global $pdo;
+    $sql = "UPDATE don_hang SET id_trangthai = ? WHERE id_donhang = ?";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$new_status, $id_donhang]);
+}
 
 ?>
