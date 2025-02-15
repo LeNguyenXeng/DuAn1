@@ -95,7 +95,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="home.html"><img src="./resources/assets/img/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href="index.php"><img src="./resources/assets/img/icons/logo-01.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -106,11 +106,13 @@
 
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
                     data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
+                    <a style="color: #333" href="index.php?act=shoppingcart">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </a>
                 </div>
 
                 <div class="icon-user">
-                    <a href="/login.html"
+                    <a href="index.php?act=login"
                         class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti">
                         <i class="zmdi zmdi-account-o"></i>
                     </a>
@@ -130,23 +132,23 @@
         <div class="menu-mobile">
             <ul class="main-menu-m">
                 <li>
-                    <a href="home.html">Home</a>
+                    <a href="index.php">Home</a>
                 </li>
 
                 <li>
-                    <a href="product.html" class="label1 rs1" data-label1="hot">Shop</a>
+                    <a href="index.php?act=shop" class="label1 rs1" data-label1="hot">Shop</a>
                 </li>
 
                 <li>
-                    <a href="shoping-cart.html">Shopping Cart</a>
+                    <a href="index.php?act=shoppingcart">Shopping Cart</a>
                 </li>
 
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="index.php?act=about">About</a>
                 </li>
 
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="index.php?act=contact">Contact</a>
                 </li>
             </ul>
         </div>
