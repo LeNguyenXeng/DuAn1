@@ -38,7 +38,7 @@
                         <option value="5" <?= ($filter_status == '5') ? 'selected' : ''; ?>>Giao hàng thành công
                         </option>
                         <option value="6" <?= ($filter_status == '6') ? 'selected' : ''; ?>>Đã huỷ</option>
-                        <option value="6" <?= ($filter_status == '6') ? 'selected' : ''; ?>>Trả hàng</option>
+                        <option value="7" <?= ($filter_status == '7') ? 'selected' : ''; ?>>Trả hàng</option>
                     </select>
                     <div class="input-group-append">
                         <input class="btn btn-outline-secondary" type="submit" value="Tìm kiếm"
@@ -81,14 +81,14 @@
                                 $trangthai_mo_ta = isset($list_trangthai[$id_trangthai]) ? $list_trangthai[$id_trangthai] : 'Không xác định';
                                 $phuongthuc = isset($list_phuongthucthanhtoan[$pttt]) ? $list_phuongthucthanhtoan[$pttt] : 'Không xác định';
                                 
-    $style = '';
-    if ($trangthai_mo_ta == "Đã huỷ") {
-        $style = 'style="color: red;"';
-    } elseif ($trangthai_mo_ta == "Trả hàng") {
-        $style = 'style="color: orange;"';
-    } elseif ($trangthai_mo_ta == "Giao hàng thành công") {
-        $style = 'style="color: green;"';
-    }
+                            $style = '';
+                            if ($trangthai_mo_ta == "Đã huỷ") {
+                                $style = 'style="color: red;"';
+                            } elseif ($trangthai_mo_ta == "Trả hàng") {
+                                $style = 'style="color: orange;"';
+                            } elseif ($trangthai_mo_ta == "Giao hàng thành công") {
+                                $style = 'style="color: green;"';
+                            }
 
                                 echo ' <tr>
                                 <td>'.$madh.'</td>
