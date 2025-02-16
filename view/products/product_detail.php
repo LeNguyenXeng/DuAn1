@@ -194,11 +194,6 @@
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Thông Tin Sản
-                            Phẩm</a>
-                    </li>
-
-                    <li class="nav-item p-b-10">
                         <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh Giá</a>
                     </li>
                 </ul>
@@ -213,43 +208,6 @@
                         </div>
                     </div>
 
-                    <!-- - -->
-                    <div class="tab-pane fade" id="information" role="tabpanel">
-                        <div class="row">
-                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                <ul class="p-lr-28 p-lr-15-sm">
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Màu
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            Đỏ
-                                        </span>
-                                    </li>
-
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Chất liệu
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            POLYESTER 100%
-                                        </span>
-                                    </li>
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Size
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            X, M, L, XL
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- - -->
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -257,7 +215,7 @@
                             <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                 <div class="p-b-30 m-lr-15-sm">
                                     <!-- Review -->
-                                    <div class="flex-w flex-t p-b-68">
+                                    <div class="flex-w flex-t">
                                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
                                             <img src="./resources/assets/img/avatar-01.jpg" alt="AVATAR">
                                         </div>
@@ -285,59 +243,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Add review -->
-                                    <form class="w-full">
-                                        <h5 class="mtext-108 cl2 p-b-7">
-                                            Thêm đánh giá của bạn
-                                        </h5>
-
-                                        <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are
-                                            marked *
-                                        </p>
-
-                                        <div class="flex-w flex-m p-t-50 p-b-23">
-                                            <span class="stext-102 cl3 m-r-16">
-                                                Bình chọn
-                                            </span>
-
-                                            <span class="wrap-rating fs-18 cl11 pointer" style="margin-top: -9px;">
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
-                                            </span>
-                                        </div>
-
-                                        <div class="row p-b-25">
-                                            <div class="col-12 p-b-5">
-                                                <label class="stext-102 cl3" for="review">Bình luận</label>
-                                                <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-                                                    id="review" name="review"></textarea>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <label class="stext-102 cl3" for="name" style="margin-top: 10px;">Họ
-                                                    Tên</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                                    name="name">
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <label class="stext-102 cl3" for="email"
-                                                    style="margin-top: 10px;">Email</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                    type="text" name="email">
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Bình luận
-                                        </button>
-                                    </form>
                                 </div>
                             </div>
                         </div>

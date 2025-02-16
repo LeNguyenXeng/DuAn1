@@ -77,7 +77,11 @@
                                 if ($id_trangthai < 4) {
                                     echo '<a href="'.$xoa.'" class="btn btn-outline-danger" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này không?\');">Hủy</a>';
                                 }
-                                
+
+                                if ($id_trangthai === 5) {
+                                    echo '<a href="index.php?act=rating&id_donhang='.$mybill['id_donhang'].'" class="btn btn-outline-success"">Đánh giá</a>';
+                                }
+
                                 echo '<a href="index.php?act=billdetail&id_donhang='.$mybill['id_donhang'].'">
                                             <button type="button" class="btn btn-outline-info">Xem Chi Tiết</button>
                                         </a>
