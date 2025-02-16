@@ -235,13 +235,20 @@ if (isset($_GET['act'])) {
         case "success":
             include "view/pay/success.php";
             break;
-            case "billdetail":
-                if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
-                    $id = $_GET['id_donhang'];
-                    $billdetail = loadall_chitietdonhang($id);
-                }
-                include "view/pay/billdetail.php";
-                break;
+        case "billdetail":
+            if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
+                $id = $_GET['id_donhang'];
+                $billdetail = loadall_chitietdonhang($id);
+            }
+            include "view/pay/billdetail.php";
+            break;
+        case "rating":
+            if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
+                $id = $_GET['id_donhang'];
+                $billdetail = loadall_chitietdonhang($id);
+            }
+            include "view/pay/rating.php";
+            break;
         default:
             include "view/home.php";
             break;
