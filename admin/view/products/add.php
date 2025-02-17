@@ -54,6 +54,11 @@
                                 aria-describedby="emailHelp" placeholder="Nhập giá sản phẩm ">
                         </div>
                         <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Số Lượng </label>
+                            <input type="number" min="0" class="form-control" id="exampleInputEmail1" name="soluong"
+                                aria-describedby="emailHelp" placeholder="Nhập số lượng sản phẩm ">
+                        </div>
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Hình Ảnh Sản Phẩm</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" name="hinh"

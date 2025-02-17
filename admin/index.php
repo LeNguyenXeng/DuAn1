@@ -118,6 +118,7 @@ if(isset($_GET['act'])){
                 $tensp=$_POST['tensp'];
                 $giasp=$_POST['giasp'];
                 $mota=$_POST['mota'];
+                $soluong=$_POST['soluong'];
                 $filename=$_FILES['hinh']['name'];
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
@@ -126,7 +127,7 @@ if(isset($_GET['act'])){
                   } else {
                     // echo "Sorry, there was an error uploading your file.";
                   }
-                  insert_sanpham($tensp,$giasp,$filename,$mota,$id_dm,$hang);
+                  insert_sanpham($tensp,$giasp,$filename,$mota,$id_dm,$hang,$soluong);
             header('location:index.php?act=listproduct');
 
                 $thongbao="Thêm thành công";
@@ -146,6 +147,7 @@ if(isset($_GET['act'])){
                     $id_dm = $_POST['iddm'];
                     $id_sp = $_POST['id_sp'];
                     $hang = $_POST['hang'];
+                    $soluong = $_POST['soluong'];
                     $tensp = $_POST['tensp'];
                     $giasp = str_replace(',', '', $_POST['giasp']); // Xử lý số
                     $giasp = floatval($giasp);
@@ -167,7 +169,7 @@ if(isset($_GET['act'])){
                     }
             
                     // Cập nhật sản phẩm
-                    update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh);
+                    update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh,$soluong);
                     header("location: index.php?act=listproduct");
                     exit;
                 }
