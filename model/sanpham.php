@@ -1,7 +1,7 @@
 <?php
 
-function insert_sanpham($tensp,$giasp,$filename,$mota,$id_dm,$hang) {
-    $sql="insert into san_pham(hang,tensp,mota,anhsp,ngaytao,gia,id_dm) values('$hang','$tensp','$mota','$filename',now(),'$giasp','$id_dm')";
+function insert_sanpham($tensp,$giasp,$filename,$mota,$id_dm,$hang,$soluong) {
+    $sql="insert into san_pham(hang,tensp,mota,anhsp,ngaytao,gia,id_dm,soluong) values('$hang','$tensp','$mota','$filename',now(),'$giasp','$id_dm','$soluong')";
     pdo_execute($sql);
 }
 function delete_sanpham($id) {
@@ -24,11 +24,11 @@ function loadone_sanpham ($id_sp){
     $sql ="select * from san_pham where id_sp=".$id_sp;
     $sanpham =pdo_query_one($sql);
     return $sanpham;
-}function update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh) {
+}function update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh,$soluong) {
     if ($hinh != "") {
-        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "', anhsp='" . $hinh . "', ngaycapnhat = now() WHERE id_sp=" . $id_sp;
+        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "', anhsp='" . $hinh . "',  soluong='" . $soluong . "', ngaycapnhat = now() WHERE id_sp=" . $id_sp;
     } else {
-        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "',ngaycapnhat = now() WHERE id_sp=" . $id_sp;
+        $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "', soluong='" . $soluong . "',ngaycapnhat = now() WHERE id_sp=" . $id_sp;
     }
     pdo_execute($sql);
 }

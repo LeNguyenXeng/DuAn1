@@ -58,6 +58,11 @@ $hinh = is_file($hinhpart) ? "<img src='" . $hinhpart . "' height='80'>" : "No P
                                     value="<?php echo number_format($gia, 0, '', ',')?>" required>
                             </div>
                             <div class="mb-3">
+                                <label for="giasp" class="form-label">Số Lượng </label>
+                                <input type="text" min="0" class="form-control" id="soluong" name="soluong"
+                                    value="<?php echo $soluong ?>" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="customFile" class="form-label">Hình Ảnh Sản Phẩm</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile" name="hinh">

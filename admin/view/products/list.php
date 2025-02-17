@@ -82,7 +82,7 @@
                                 <td>'.$hinh.'</td>
                                 <td>'.number_format($gia, 0, '', ',').'đ</td>
                                 <td>'.$giamgia.'</td>
-                                <td></td>
+                                <td>'.$soluong.'</td>
                                 <td>'.$mota.'</td>
                                 <td>'.$ngaytao.'</td>
                                 <td>'.$ngaycapnhat.'</td>
