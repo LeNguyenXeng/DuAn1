@@ -24,7 +24,11 @@ function loadone_sanpham ($id_sp){
     $sql ="select * from san_pham where id_sp=".$id_sp;
     $sanpham =pdo_query_one($sql);
     return $sanpham;
-}function update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh,$soluong) {
+}
+
+
+
+function update_sanpham($id_sp, $hang, $id_dm, $tensp, $giasp, $mota, $hinh,$soluong) {
     if ($hinh != "") {
         $sql = "UPDATE san_pham SET id_dm='" . $id_dm . "', hang='" . $hang . "', tensp='" . $tensp . "', gia='" . $giasp . "', mota='" . $mota . "', anhsp='" . $hinh . "',  soluong='" . $soluong . "', ngaycapnhat = now() WHERE id_sp=" . $id_sp;
     } else {

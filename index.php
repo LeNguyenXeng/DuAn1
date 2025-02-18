@@ -7,7 +7,7 @@ include "model/sanpham.php";
 include "model/cart.php";
 include "model/bill.php";
 include "global.php";
-
+var_dump($_SESSION['gio_hang']);
 $spnew = loadAll_sanpham_home();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -29,11 +29,13 @@ if (isset($_GET['act'])) {
             }
             $spadd = get_cart_items($id_nguoidung);
             if (isset($_POST['addtocart'])) {
+                $id_sp = $_POST['id_sp'];
                 $soluong = isset($_POST['num-product']) ? (int)$_POST['num-product'] : 1;
                 $price = $_POST['gia'];
                 $anhsp = $_POST['hinh'];
                 $name = $_POST['tensp'];
                 $existingProduct = check_product_in_cart($id_nguoidung, $name);
+
                 if ($existingProduct) {
                     update_cart_quantity($id_nguoidung, $name, $soluong);
                 } else {
@@ -46,6 +48,7 @@ if (isset($_GET['act'])) {
                 } else {
                     // Thêm sản phẩm vào session
                     $_SESSION['gio_hang'][$name] = array(
+                        'id_sp' => $id_sp,
                         'soluong' => $soluong,
                         'gia' => $price,
                         'hinh' => $anhsp,
@@ -78,7 +81,7 @@ if (isset($_GET['act'])) {
                 if ($idbill) { // Kiểm tra nếu đơn hàng đã tạo thành công
                     unset($_SESSION['gio_hang']);
                 }
-                
+
 
                 header("Location: index.php?act=shoppingcart");
                 exit();
@@ -87,28 +90,36 @@ if (isset($_GET['act'])) {
             }
             include "view/shoppingcart.php";
             break;
-            case "deletebill":
-                if (isset($_SESSION['user']['id_nguoidung']) && isset($_GET['id_donhang'])) {
-                    $id_nguoidung = $_SESSION['user']['id_nguoidung'];
-                    $id_donhang = $_GET['id_donhang'];
-                    
-                    // Giả sử trạng thái "Đã hủy" là 6
-                    if (updateOrderStatus($id_donhang, 6)) {
-                        header("Location: index.php?act=bill");
-                        exit();
-                    } else {
-                        // Xử lý lỗi nếu cập nhật không thành công
-                        echo "Cập nhật trạng thái đơn hàng thất bại.";
-                    }
+        case "deletebill":
+            if (isset($_SESSION['user']['id_nguoidung']) && isset($_GET['id_donhang'])) {
+                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                $id_donhang = $_GET['id_donhang'];
+
+                $products =  get_order_products($id_donhang);
+                // Cập nhật lại số lượng trong kho theo tên sản phẩm
+                foreach ($products as $product) {
+                    $name = $product['name'];
+                    $soluong = $product['soluong'];
+                    increase_product_quantity($name, $soluong);
                 }
-                break;
+
+                // Giả sử trạng thái "Đã hủy" là 6
+                if (updateOrderStatus($id_donhang, 6)) {
+                    header("Location: index.php?act=bill");
+                    exit();
+                } else {
+                    // Xử lý lỗi nếu cập nhật không thành công
+                    echo "Cập nhật trạng thái đơn hàng thất bại.";
+                }
+            }
+            break;
         case "about":
             include "view/about.php";
             break;
         case "contact":
             include "view/contact.php";
             break;
-        // Account
+            // Account
         case "login":
             if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
                 $email = $_POST['email'];
@@ -170,14 +181,14 @@ if (isset($_GET['act'])) {
             session_unset();
             header("location: index.php");
             break;
-        // Product
+            // Product
         case "productdetail":
             if (isset($_GET['idsp'])) {
                 $onesp = loadone_sanpham($_GET['idsp']);
             }
             include "view/products/product_detail.php";
             break;
-        // Pay
+            // Pay
         case "checkout":
             if (isset($_POST['dongydathang']) && ($_POST['dongydathang'])) {
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -193,7 +204,32 @@ if (isset($_GET['act'])) {
                 $sdt = $_SESSION['user']['sdt'];
                 $ngaydathang = date('Y-m-d');  // Lấy ngày theo định dạng DD-MM-YYYY
                 $tongtien = $_SESSION['tong_tien'];
+                // Duyệt qua tất cả sản phẩm trong giỏ hàng để kiểm tra tồn kho
+                
+                foreach ($_SESSION['gio_hang'] as $key => $value) {
+                    $idsp = $value['id_sp'];
+                    $soluong = $value['soluong'];
+                    // Kiểm tra số lượng tồn kho
+                    $stock_quantity = slkho($idsp);
 
+                    if ($soluong > $stock_quantity) {
+                        echo "<script>
+                    alert('Sản phẩm {$value['tensp']} không đủ trong kho. Chỉ còn $stock_quantity sản phẩm.');
+                    window.location ='index.php?act=viewcart';
+                  </script>";
+                        exit; // Nếu có sản phẩm không đủ kho, dừng đơn hàng
+                    }
+
+                    // Cập nhật tồn kho
+                    $update_result = updatesl($idsp, $soluong);
+                    if (!$update_result) {
+                        echo "<script>
+                    alert('Có lỗi khi cập nhật số lượng tồn kho cho sản phẩm {$value['tensp']}');
+                    window.location ='index.php?act=viewcart';
+                  </script>";
+                        exit; // Dừng lại nếu cập nhật tồn kho thất bại
+                    }
+                }
                 $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
                 // / Lưu chi tiết đơn hàng vào database
                 $cart_items = get_cart_items($id_nguoidung); // Lấy tất cả sản phẩm trong giỏ từ database
@@ -207,8 +243,9 @@ if (isset($_GET['act'])) {
                         insert_billdetail($idbill, $quantity, $total_price, $image, $name, $price, null);
                     }
                 }
-                
+
                 // Xóa giỏ hàng sau khi đặt hàng thành công
+                deleteall($id_nguoidung);
                 unset($_SESSION['gio_hang']);
                 // Chuyển hướng tới trang xác nhận đơn hàng
                 header("location:index.php?act=success");
@@ -217,21 +254,22 @@ if (isset($_GET['act'])) {
             include "view/pay/checkout.php";
             break;
 
-        
-            case "bill":
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
-                if (isset($_SESSION['user']['id_nguoidung'])) {
-                    $id_nguoidung = $_SESSION['user']['id_nguoidung'];
-                    $bill = load_donhang($id_nguoidung);
-                    $trangthai = load_trangthai();
-                    include "view/pay/bill.php";
-                } else {
-                    header("Location: index.php?act=login");
-                    exit();
-                }
-                break;
+
+        case "bill":
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (isset($_SESSION['user']['id_nguoidung'])) {
+                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                $bill = load_donhang($id_nguoidung);
+                $trangthai = load_trangthai();
+                include "view/pay/bill.php";
+            } else {
+                header("Location: index.php?act=login");
+                exit();
+            }
+            break;
+
         case "success":
             include "view/pay/success.php";
             break;

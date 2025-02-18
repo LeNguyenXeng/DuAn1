@@ -77,3 +77,17 @@ function pdo_execute4($sql, $params = []) {
     $stmt->execute($params);
     return $conn->lastInsertId(); 
 }
+
+
+function pdo_query2($sql, $params = []) {
+    global $pdo;
+    $stmt = $pdo->prepare($sql);
+
+    // Đảm bảo các tham số được gán đúng chỉ mục, bắt đầu từ 1
+    foreach ($params as $index => $param) {
+        $stmt->bindValue($index + 1, $param);  // Bind từ chỉ mục 1 thay vì 0
+    }
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

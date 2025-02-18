@@ -31,7 +31,8 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
         <div>
             <div class="bor10 p-lr-40 p-t-30 p-b-40 m-lr-0-xl p-lr-15-sm" style="margin-top: 20px; margin-bottom:50px">
                 <h4 class="mtext-109 cl2 p-b-30" style="font-weight: 600; font-size: 22px">
-                    Tổng giỏ hàng
+                    Tổng giỏ hàng 
+                   
                 </h4>
 
                 <div class="flex-w flex-t bor12 p-b-13">
@@ -43,7 +44,9 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
 
                     <div class="size-209">
                         <span class="mtext-110 cl2">
-                            <?php echo number_format($tong) . '₫'; ?>
+                            <?php echo number_format($tong) . '₫'; 
+                            
+                            ?>
                         </span>
                     </div>
                 </div>
@@ -91,7 +94,7 @@ $tong = isset($_SESSION['tong_tien']) ? $_SESSION['tong_tien'] : 0; // Lấy t�
                             <!-- Thông tin thanh toán -->
                             <div class="formcheck" style="margin-left: 22px; margin-top: 25px; margin-bottom: 30px;">
                                 <div class="cl2" style="font-family: Poppins, sans-serif; text-transform: capitalize;">
-                                    <input class="form-check-input" type="radio" name="pttt" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="pttt" id="flexRadioDefault1" required>
                                     <label for="flexRadioDefault1" style="font-size: 14px;">
                                         Thanh Toán khi nhận hàng
                                     </label>

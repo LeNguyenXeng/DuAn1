@@ -66,4 +66,33 @@ function loadall_bill_admin($status = 0) {
     $sql .= " ORDER BY id_donhang DESC";
     return pdo_query($sql);
 }
+function slkho($id)
+{
+    $sql = "SELECT soluong FROM san_pham WHERE id_sp = " . (int)$id;
+    $result = pdo_query($sql);
+
+    // Giả sử pdo_query trả về một mảng với kết quả
+    if (count($result) > 0) {
+        return $result[0]['soluong']; // Trả về số lượng tồn kho
+    } else {
+        return 0; // Nếu không tìm thấy sản phẩm
+    }
+}
+
+function updatesl($id, $sltronggio)
+{
+    // Kiểm tra số lượng tồn kho hiện tại
+    $stock_quantity = slkho($id);
+
+    // Nếu số lượng yêu cầu lớn hơn số lượng tồn kho, trả về false
+    if ($sltronggio > $stock_quantity) {
+        return false; // Không đủ hàng để cập nhật
+    }
+
+    // Trừ số lượng trong kho
+    $sql = "UPDATE `san_pham` SET `soluong` = `soluong` - :sltronggio WHERE `id_sp` = :id";
+    pdo_execute2($sql, ['sltronggio' => $sltronggio, 'id' => $id]);
+    
+    return true; // Cập nhật thành công
+}
 ?>
