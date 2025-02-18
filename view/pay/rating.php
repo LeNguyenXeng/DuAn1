@@ -34,6 +34,7 @@
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Viết đánh giá</th>
                             <th scope="col">Đánh giá sao</th>
+                            <th scope="col">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,10 @@
                                                 <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                 <input class="dis-none" type="number" name="rating">
                                             </span></td>
+                        <td><a>
+                    <button style=" font-family: Popspismedium; font-size: 14px; margin-top: 20px;" type="button"
+                        class="btn btn-danger">Đánh Giá</button>
+                </a><td/>
                     </tr>';
         }
     
@@ -63,21 +68,11 @@
                     </tbody>
                 </table>
             </div>
-            <div style="display: flex
-;
-    margin: 0 auto;
-    gap: 9px;
-    width: 22%;
-    margin-top: 20px;   ">
-                <a href="index.php?act=bill">
-                    <button style=" font-family: Popspismedium; font-size: 14px; margin-top: 20px;" type="button"
-                        class="btn btn-info">Quay lại đơn hàng</button>
-                </a>
-                <a href="index.php?act=bill">
-                    <button style=" font-family: Popspismedium; font-size: 14px; margin-top: 20px;" type="button"
-                        class="btn btn-danger">Đánh Giá</button>
-                </a>
-            </div>
+            <a href="index.php?act=bill">
+                <button
+                    style="display: flex; margin: 0 auto; font-family: Popspismedium; font-size: 14px; margin-top: 20px;"
+                    type="button" class="btn btn-info">Quay lại đơn hàng</button>
+            </a>
 
         </div>
 

@@ -68,14 +68,20 @@
                         </h4>
 
                         <span class="mtext-106 cl2">
-                            <?php echo number_format($gia, 0, '', ','). '₫';  ?>
+                            <?php echo  number_format($gia, 0, '', ','). '₫';  ?>
                         </span>
+                        <br>
+                        <div style="display: flex;gap: 8px;margin-top: 20px; font-size: 15px;">
+                            <span style="font-family: Poppins">Số lượng kho: </span>
+                            <p class=" cl2" style="font-family: Poppins">
+                                <?php echo number_format($soluong, 0, '', '.'). ' sản phẩm';  ?>
+                            </p>
+                        </div>
 
                         <p style="font-family: Poppins-Regular, sans-serif; font-size: 14px; line-height: 1.7;"
                             class=" cl3 p-t-23">
                             <?php echo $mota ?>
                         </p>
-
                         <!--  -->
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
