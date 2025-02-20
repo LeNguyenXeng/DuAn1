@@ -226,27 +226,64 @@
                                             <img src="./resources/assets/img/avatar-01.jpg" alt="AVATAR">
                                         </div>
 
-                                        <div class="size-207">
-                                            <div class="flex-w flex-sb-m p-b-17">
-                                                <span class="mtext-107 cl2 p-r-20">
-                                                    Xèng
-                                                </span>
+                                        <?php 
+                                        //     foreach ($listbl as $binhluan) {
+                                        //         extract($binhluan);
+                                        //         echo '<div class="size-207">
+                                        //     <div class="flex-w flex-sb-m p-b-17">
+                                        //         <span class="mtext-107 cl2 p-r-20">
+                                        //             Xèng
+                                        //         </span>
 
-                                                <span class="fs-18 cl11">
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star-half"></i>
-                                                </span>
-                                            </div>
+                                        //         <span class="fs-18 cl11">
+                                        //             <i class="zmdi zmdi-star"></i>
+                                        //             <i class="zmdi zmdi-star"></i>
+                                        //             <i class="zmdi zmdi-star"></i>
+                                        //             <i class="zmdi zmdi-star"></i>
+                                        //             <i class="zmdi zmdi-star-half"></i>
+                                        //         </span>
+                                        //     </div>
 
-                                            <p class="stext-102 cl6">
-                                                Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
-                                                ủng hộ
-                                                tiếp. Chất lượng là số 1!!
-                                            </p>
-                                        </div>
+                                        //     <p class="stext-102 cl6">
+                                        //         Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
+                                        //         ủng hộ
+                                        //         tiếp. Chất lượng là số 1!!
+                                        //     </p>
+                                        // </div>';
+                                        //     }
+
+                                        if (is_array($listbl) || is_object($listbl)) {
+                                            foreach ($listbl as $binhluan) {
+                                                extract($binhluan);
+                                                echo '<div class="size-207">
+                                                <div class="flex-w flex-sb-m p-b-17">
+                                                    <span class="mtext-107 cl2 p-r-20">
+                                                        Xèng
+                                                    </span>
+    
+                                                    <span class="fs-18 cl11">
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star-half"></i>
+                                                    </span>
+                                                </div>
+    
+                                                <p class="stext-102 cl6">
+                                                    Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
+                                                    ủng hộ
+                                                    tiếp. Chất lượng là số 1!!
+                                                </p>
+                                            </div>';
+                                            }
+                                        } else {
+                                            echo '<p>Không có bình luận nào.</p>';
+                                        }
+                                        ?>
+                                    </div>
+
+
                                     </div>
 
                                 </div>

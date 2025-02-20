@@ -91,3 +91,7 @@ function pdo_query2($sql, $params = []) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function pdo_prepare($sql) {
+    global $pdo; // Giả sử bạn đã khởi tạo đối tượng PDO
+    return $pdo->prepare($sql);
+}
