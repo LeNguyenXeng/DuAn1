@@ -6,8 +6,8 @@ include "model/giohang.php";
 include "model/sanpham.php";
 include "model/cart.php";
 include "model/bill.php";
+include "model/binhluan.php";
 include "global.php";
-var_dump($_SESSION['gio_hang']);
 $spnew = loadAll_sanpham_home();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -39,7 +39,7 @@ if (isset($_GET['act'])) {
                 if ($existingProduct) {
                     update_cart_quantity($id_nguoidung, $name, $soluong);
                 } else {
-                    insert($id_nguoidung, $soluong, $price, $anhsp, $name);
+                    insert($id_nguoidung, $soluong, $price, $anhsp, $name, $id_sp);
                 }
                 // Kiểm tra sản phẩm có trong session chưa
                 if (isset($_SESSION['gio_hang'][$name])) {
@@ -189,87 +189,75 @@ if (isset($_GET['act'])) {
             include "view/products/product_detail.php";
             break;
             // Pay
-        case "checkout":
-            if (isset($_POST['dongydathang']) && ($_POST['dongydathang'])) {
-                date_default_timezone_set('Asia/Ho_Chi_Minh');
-                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
-                $id_trangthai = 1;
-                $madh = 'SWE' . date('YmdHis');  // Lấy ngày và giờ theo định dạng YYYYMMDDHHMMSS
-                // Lấy giá trị của phương thức thanh toán (pttt)
-                $pttt = isset($_POST['pttt']) && $_POST['pttt'] == 'on' ? 1 : 0;
-
-                $hoten = $_SESSION['user']['hoten'];
-                $diachi = $_SESSION['user']['diachi'];
-                $email = $_SESSION['user']['email'];
-                $sdt = $_SESSION['user']['sdt'];
-                $ngaydathang = date('Y-m-d');  // Lấy ngày theo định dạng DD-MM-YYYY
-                $tongtien = $_SESSION['tong_tien'];
-                // Duyệt qua tất cả sản phẩm trong giỏ hàng để kiểm tra tồn kho
-                
-                foreach ($_SESSION['gio_hang'] as $key => $value) {
-                    $idsp = $value['id_sp'];
-                    $soluong = $value['soluong'];
-                    // Kiểm tra số lượng tồn kho
-                    $stock_quantity = slkho($idsp);
-
-                    if ($soluong > $stock_quantity) {
-                        echo "<script>
-                    alert('Sản phẩm {$value['tensp']} không đủ trong kho. Chỉ còn $stock_quantity sản phẩm.');
-                    window.location ='index.php?act=viewcart';
-                  </script>";
-                        exit; // Nếu có sản phẩm không đủ kho, dừng đơn hàng
+            case "checkout":
+                if (isset($_POST['dongydathang']) && ($_POST['dongydathang'])) {
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                    $id_trangthai = 1;
+                    $madh = 'SWE' . date('YmdHis');  // Lấy ngày và giờ theo định dạng YYYYMMDDHHMMSS
+                    $pttt = isset($_POST['pttt']) && $_POST['pttt'] == 'on' ? 1 : 0;
+                    $hoten = $_SESSION['user']['hoten'];
+                    $diachi = $_SESSION['user']['diachi'];
+                    $email = $_SESSION['user']['email'];
+                    $sdt = $_SESSION['user']['sdt'];
+                    $ngaydathang = date('Y-m-d');  
+                    $tongtien = $_SESSION['tong_tien'];
+            
+                    $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
+                    
+                    // Lấy giỏ hàng từ database
+                    $cart_items = get_cart_items($id_nguoidung);
+                    
+                    if (!empty($cart_items)) {
+                        foreach ($cart_items as $item) {
+                            $id_bl = 0;
+                            $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                            $id_donhang = $idbill;
+                            $name = $item['name'];
+                            $image = $item['anhsp'];
+                            $price = $item['price'];
+                            $quantity = $item['soluong'];
+                            $id_sp = isset($item['id_sp']) ? $item['id_sp'] : null;
+            
+                            
+                            if ($id_sp === null) {
+                                error_log("Lỗi: id_sp bị null, không thể lưu sản phẩm: " . print_r($item, true));
+                                continue;
+                            }
+            
+                            $total_price = $price * $quantity;
+            
+                            insert_billdetail($id_donhang, $quantity, $total_price, $image, $name, $price, null, $id_sp);
+                        }
+                    } else {
+                        
+                        error_log("Lỗi: Giỏ hàng rỗng, không có sản phẩm nào được lưu.");
                     }
-
-                    // Cập nhật tồn kho
-                    $update_result = updatesl($idsp, $soluong);
-                    if (!$update_result) {
-                        echo "<script>
-                    alert('Có lỗi khi cập nhật số lượng tồn kho cho sản phẩm {$value['tensp']}');
-                    window.location ='index.php?act=viewcart';
-                  </script>";
-                        exit; // Dừng lại nếu cập nhật tồn kho thất bại
-                    }
+                    $listbl = load_All_rating($id_bl);
+                    // Xóa giỏ hàng sau khi đặt hàng thành công
+                    unset($_SESSION['gio_hang']);
+            
+                    // Chuyển hướng tới trang xác nhận đơn hàng
+                    header("location:index.php?act=success");
+                    exit();
                 }
-                $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
-                // / Lưu chi tiết đơn hàng vào database
-                $cart_items = get_cart_items($id_nguoidung); // Lấy tất cả sản phẩm trong giỏ từ database
-                if (!empty($cart_items)) {
-                    foreach ($cart_items as $item) {
-                        $name = $item['name'];
-                        $image = $item['anhsp'];
-                        $price = $item['price'];
-                        $quantity = $item['soluong'];
-                        $total_price = $price * $quantity;
-                        insert_billdetail($idbill, $quantity, $total_price, $image, $name, $price, null);
-                    }
-                }
-
-                // Xóa giỏ hàng sau khi đặt hàng thành công
-                deleteall($id_nguoidung);
-                unset($_SESSION['gio_hang']);
-                // Chuyển hướng tới trang xác nhận đơn hàng
-                header("location:index.php?act=success");
-                exit;
-            }
-            include "view/pay/checkout.php";
-            break;
-
-
-        case "bill":
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            if (isset($_SESSION['user']['id_nguoidung'])) {
-                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
-                $bill = load_donhang($id_nguoidung);
-                $trangthai = load_trangthai();
-                include "view/pay/bill.php";
-            } else {
-                header("Location: index.php?act=login");
-                exit();
-            }
-            break;
-
+                include "view/pay/checkout.php";
+                break;        
+                        case "bill":
+                            if (session_status() == PHP_SESSION_NONE) {
+                                session_start();
+                            }
+                            if (isset($_SESSION['user']['id_nguoidung'])) {
+                                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                                $bill = load_donhang($id_nguoidung);
+                                $trangthai = load_trangthai();
+                                include "view/pay/bill.php";
+                            } else {
+                                header("Location: index.php?act=login");
+                                exit();
+                            }
+                            break;
+            
         case "success":
             include "view/pay/success.php";
             break;
@@ -280,13 +268,37 @@ if (isset($_GET['act'])) {
             }
             include "view/pay/billdetail.php";
             break;
-        case "rating":
-            if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
-                $id = $_GET['id_donhang'];
-                $billdetail = loadall_chitietdonhang($id);
-            }
-            include "view/pay/rating.php";
-            break;
+            case "rating":
+                if (isset($_GET['id_donhang']) && ($_GET['id_donhang'] > 0)) {
+                    $id = $_GET['id_donhang'];
+                    $billdetail = loadall_chitietdonhang($id);
+                }
+                include "view/pay/rating.php"; // Hiển thị trang bình luận
+                break;
+                case "addcomment":
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if (!isset($_SESSION['user'])) {
+                            header('Location: index.php?act=login');
+                            exit();
+                        }
+                        $id_bl = 0;
+                        $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+                        $hoten = $_SESSION['user']['hoten'];
+                        $id_sp = isset($_POST['id_sp']) ? (int)$_POST['id_sp'] : 0;
+                        $tensp = isset($_POST['tensp']) ? $_POST['tensp'] : '';
+                        $noidung = isset($_POST['noidung']) ? trim($_POST['noidung']) : '';
+                        $star = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
+                        $ngaybl = date('Y-m-d H:i:s');
+                
+                        if ($id_sp > 0 && !empty($noidung) && $star > 0) {
+                            insert_rating($id_bl,$id_nguoidung, $hoten, $id_sp, $tensp, $noidung, $ngaybl, $star);
+                            header("Location: index.php?act=productdetail&idsp=$id_sp");
+                            exit();
+                        } else {
+                            echo "<script>alert('Vui lòng nhập nội dung và chọn số sao!');</script>";
+                        }
+                    }
+                    break;
         default:
             include "view/home.php";
             break;

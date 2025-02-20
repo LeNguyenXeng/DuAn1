@@ -1,8 +1,9 @@
 <?php
-function insert($id_nguoidung,$soluong, $price, $anhsp, $name)
+function insert($id_nguoidung, $soluong, $price, $anhsp, $name, $id_sp)
 {
-    $sql = "INSERT INTO `gio_hang`(`id_nguoidung`,`soluong`, `price`, `anhsp`, `name`, `date_added`) values('$id_nguoidung','$soluong' , '$price', '$anhsp', '$name', now())";
-    pdo_execute($sql);
+    $sql = "INSERT INTO `gio_hang` (`id_nguoidung`, `soluong`, `price`, `anhsp`, `name`, `id_sp`, `date_added`) 
+            VALUES ('$id_nguoidung', '$soluong', '$price', '$anhsp', '$name', '$id_sp', NOW())";  
+pdo_execute($sql);
 }
 function get_cart_items($id_nguoidung) {
     $query = "SELECT * FROM gio_hang WHERE id_nguoidung = $id_nguoidung";

@@ -46,24 +46,31 @@
             $formatted_price = number_format($price, 0, '', '.') . 'đ';
             $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
             echo '<tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                        <td>'.$name.'</td>       
-                        <td><img src="'.$hinh.'" style="width: 100px;" alt=""></td>    
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></td> 
-                        <td> <span class="wrap-rating fs-18 cl11 pointer" style="margin-top: -9px;">
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
-                                            </span></td>
-                        <td><a>
-                    <button style=" font-family: Popspismedium; font-size: 14px; margin-top: 20px;" type="button"
-                        class="btn btn-danger">Đánh Giá</button>
-                </a><td/>
-                    </tr>';
-        }
-    
+                    <form action="index.php?act=addcomment" method="post">
+                        <td>' . $name . '</td>       
+                        <td><img src="' . $hinh . '" style="width: 100px;" alt=""></td>    
+                        <td>
+                            <textarea class="form-control" name="noidung" rows="3" required></textarea>
+                        </td> 
+                        <td> 
+                            <span class="wrap-rating fs-18 cl11 pointer" style="margin-top: -9px;">
+                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                <input class="dis-none" type="number" name="rating" min="1" max="5" required>
+                            </span>
+                        </td>
+                        <td>
+                            <input type="hidden" name="id_sp" value="' . $id_sp . '">
+                            <input type="hidden" name="tensp" value="' . $name . '">
+                            <button style="font-family: Popspismedium; font-size: 14px; margin-top: 20px;" 
+                                type="submit" class="btn btn-danger">Đánh Giá</button>
+                        </td>
+                    </form>
+                </tr>';
+        }        
 ?>
                     </tbody>
                 </table>

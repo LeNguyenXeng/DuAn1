@@ -13,11 +13,23 @@ function loadall_donhang($tendonhang) {
     $listnguoidung = pdo_query($sql);
     return $listnguoidung;
 }
-function insert_billdetail($id_donhang, $soluong, $thanhtien, $img, $name, $price, $id_variant){
-    $sql = "INSERT INTO `chi_tiet_don_hang`(`id_donhang`,`soluong`, `thanhtien`, `img`, `name`, `price`, `id_variant`) 
-            VALUES ('$id_donhang', '$soluong', '$thanhtien', '$img', '$name', '$price', " . ($id_variant !== null ? "'$id_variant'" : "NULL") . ")";
-    pdo_execute($sql);
+function insert_billdetail($id_donhang, $soluong, $thanhtien, $img, $name, $price, $id_variant, $id_sp) {
+    $sql = "INSERT INTO `chi_tiet_don_hang` (`id_donhang`, `soluong`, `thanhtien`, `img`, `name`, `price`, `id_variant`, `id_sp`) 
+            VALUES (:id_donhang, :soluong, :thanhtien, :img, :name, :price, :id_variant, :id_sp)";
+    
+    $stmt = pdo_prepare($sql); // Giả sử bạn có một hàm pdo_prepare
+    $stmt->bindParam(':id_donhang', $id_donhang);
+    $stmt->bindParam(':soluong', $soluong);
+    $stmt->bindParam(':thanhtien', $thanhtien);
+    $stmt->bindParam(':img', $img);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':id_variant', $id_variant);
+    $stmt->bindParam(':id_sp', $id_sp);
+    
+    $stmt->execute();
 }
+
 $pdo = pdo_get_connection();
 function updateOrderStatus($id_donhang, $new_status) {
     global $pdo;
