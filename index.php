@@ -203,8 +203,31 @@ if (isset($_GET['act'])) {
                     $ngaydathang = date('Y-m-d');  
                     $tongtien = $_SESSION['tong_tien'];
             
+                    foreach ($_SESSION['gio_hang'] as $key => $value) {
+                        $idsp = $value['id_sp'];
+                        $soluong = $value['soluong'];
+                        // Kiểm tra số lượng tồn kho
+                        $stock_quantity = slkho($idsp);
+    
+                        if ($soluong > $stock_quantity) {
+                            echo "<script>
+                        alert('Sản phẩm {$value['tensp']} không đủ trong kho. Chỉ còn $stock_quantity sản phẩm.');
+                        window.location ='index.php?act=viewcart';
+                      </script>";
+                            exit; // Nếu có sản phẩm không đủ kho, dừng đơn hàng
+                        }
+    
+                        // Cập nhật tồn kho
+                        $update_result = updatesl($idsp, $soluong);
+                        if (!$update_result) {
+                            echo "<script>
+                        alert('Có lỗi khi cập nhật số lượng tồn kho cho sản phẩm {$value['tensp']}');
+                        window.location ='index.php?act=viewcart';
+                      </script>";
+                            exit; // Dừng lại nếu cập nhật tồn kho thất bại
+                        }
+                    }
                     $idbill = insert_bill($id_nguoidung, $id_trangthai, $madh, $pttt, $hoten, $sdt, $diachi, $email, $ngaydathang, $tongtien);
-                    
                     // Lấy giỏ hàng từ database
                     $cart_items = get_cart_items($id_nguoidung);
                     
@@ -257,6 +280,7 @@ if (isset($_GET['act'])) {
                                 exit();
                             }
                             break;
+                            
             
         case "success":
             include "view/pay/success.php";
