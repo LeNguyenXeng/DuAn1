@@ -81,8 +81,6 @@ if (isset($_GET['act'])) {
                 if ($idbill) { // Kiểm tra nếu đơn hàng đã tạo thành công
                     unset($_SESSION['gio_hang']);
                 }
-
-
                 header("Location: index.php?act=shoppingcart");
                 exit();
             } else {
@@ -113,6 +111,20 @@ if (isset($_GET['act'])) {
                 }
             }
             break;
+            case "returnbill":
+                if (isset($_GET['id_donhang'])) { // Kiểm tra nếu id_donhang tồn tại
+                    $id_donhang = $_GET['id_donhang'];
+                    if (updateOrderStatus($id_donhang, 7)) {
+                        header("Location: index.php?act=bill");
+                        exit();
+                    } else {
+                        // Xử lý lỗi nếu cập nhật không thành công
+                        echo "Cập nhật trạng thái đơn hàng thất bại.";
+                    }
+                } else {
+                    echo "ID đơn hàng không tồn tại.";
+                }
+            break; // Đảm bảo có break ở đây
         case "about":
             include "view/about.php";
             break;
@@ -185,6 +197,8 @@ if (isset($_GET['act'])) {
         case "productdetail":
             if (isset($_GET['idsp'])) {
                 $onesp = loadone_sanpham($_GET['idsp']);
+                $id_sp = $_GET['idsp']; 
+                $listbinhluan = loadId_binhluan($id_sp); 
             }
             include "view/products/product_detail.php";
             break;
@@ -297,7 +311,7 @@ if (isset($_GET['act'])) {
                     $id = $_GET['id_donhang'];
                     $billdetail = loadall_chitietdonhang($id);
                 }
-                include "view/pay/rating.php"; // Hiển thị trang bình luận
+                include "view/pay/rating.php";
                 break;
                 case "addcomment":
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

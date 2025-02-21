@@ -28,22 +28,34 @@
                                 <th>ID</th>
                                 <th>ID Sản Phẩm</th>
                                 <th>Tên Tài Khoản</th>
-                                <th>Email</th>
+                                <th>Tên Sản Phẩm</th>
                                 <th>Nội Dung Bình Luận</th>
                                 <th>Ngày Bình Luận</th>
                                 <th>Đánh Giá</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>10</td>
-                                <td>Xèng</td>
-                                <td>admin@gmail.com</td>
-                                <td>Sản phẩm đẹp, sẽ mua lại</td>
-                                <td>24/12/2024</td>
-                                <td>5 Sao</td>
-                            </tr>
+                            <?php
+                            foreach ($listbinhluan as $binhluan) {
+                                extract($binhluan);
+                                $xoabl = "index.php?act=deletecomment&id=".$id_bl;
+                                echo '<tr>
+                                <td>'.$id_bl.'</td>
+                                <td>'.$id_sp.'</td>
+                                <td>'.$hoten.'</td>
+                                <td>'.$tensp.'</td>
+                                <td>'.$noidung.'</td>
+                                <td>'.$ngaybl.'</td>
+                                <td>'.$star.' Sao</td>
+                                <td>
+                                    <a onclick="return confirm(\'Bạn có muốn xoá không?\')" href="'.$xoabl.'"  class="btn btn-danger btn-circle">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>';
+                            }
+                            ?>
+
                         </tbody>
                     </table>
                 </div>
