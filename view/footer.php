@@ -23,23 +23,23 @@
 
                     <ul>
                         <li class="p-b-10">
-                            <a href="/product.html" class="stext-107 cl7 hov-cl1 trans-04">
+                            <a href="index.php?act=shop" class="stext-107 cl7 hov-cl1 trans-04">
                                 Shop
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="/shoping-cart.html" class="stext-107 cl7 hov-cl1 trans-04">
+                            <a href="index.php?act=shoppingcart" class="stext-107 cl7 hov-cl1 trans-04">
                                 Shopping Cart
                             </a>
                         </li>
                         <li class="p-b-10">
-                            <a href="/about.html" class="stext-107 cl7 hov-cl1 trans-04">
+                            <a href="index.php?act=about" class="stext-107 cl7 hov-cl1 trans-04">
                                 About
                             </a>
                         </li>
                         <li class="p-b-10">
-                            <a href="/contact.html" class="stext-107 cl7 hov-cl1 trans-04">
+                            <a href="index.php?act=contact" class="stext-107 cl7 hov-cl1 trans-04">
                                 Contact
                             </a>
                         </li>

@@ -29,7 +29,10 @@ function loadId_binhluan($id_sp) {
     return $listbinhluan;
 }
 
-
+function check_existing_comment($id_nguoidung, $id_sp) {
+    $sql = "SELECT COUNT(*) FROM `binh_luan` WHERE `id_nguoidung` = ? AND `id_sp` = ?";
+    return pdo_query_value($sql, $id_nguoidung, $id_sp);
+}
 
 
 ?>
