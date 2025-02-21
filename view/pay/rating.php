@@ -40,38 +40,49 @@
                     <tbody>
 
                         <?php 
-           foreach ($billdetail as $bill) {
-            $hinh = $img_path . $bill['img'];
-            extract($bill);
-            $formatted_price = number_format($price, 0, '', '.') . 'đ';
-            $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
-            echo '<tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
-                    <form action="index.php?act=addcomment" method="post">
-                        <td>' . $name . '</td>       
-                        <td><img src="' . $hinh . '" style="width: 100px;" alt=""></td>    
-                        <td>
-                            <textarea class="form-control" name="noidung" rows="3" required></textarea>
-                        </td> 
-                        <td> 
-                            <span class="wrap-rating fs-18 cl11 pointer" style="margin-top: -9px;">
-                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                <input class="dis-none" type="number" name="rating" min="1" max="5" required>
-                            </span>
-                        </td>
-                        <td>
-                            <input type="hidden" name="id_sp" value="' . $id_sp . '">
-                            <input type="hidden" name="tensp" value="' . $name . '">
-                            <button style="font-family: Popspismedium; font-size: 14px; margin-top: 20px;" 
-                                type="submit" class="btn btn-danger">Đánh Giá</button>
-                        </td>
-                    </form>
-                </tr>';
-        }        
+foreach ($billdetail as $bill) {
+    $hinh = $img_path . $bill['img'];
+    extract($bill);
+    $formatted_price = number_format($price, 0, '', '.') . 'đ';
+    $formatted_thanhtien = number_format($thanhtien, 0, '', '.') . 'đ';
+
+    // Kiểm tra xem người dùng đã bình luận sản phẩm này chưa
+    $existing_comment = check_existing_comment($_SESSION['user']['id_nguoidung'], $id_sp);
+
+    echo '<tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
+            <form action="index.php?act=addcomment" method="post">';
+    
+    echo '<td>' . $name . '</td>';       
+    echo '<td><img src="' . $hinh . '" style="width: 100px;" alt=""></td>';    
+
+    if ($existing_comment > 0) {
+        echo '<td colspan="3" style="text-align:center; color: green;">Bạn đã đánh giá sản phẩm này</td>';
+    } else {
+        echo '<td>
+                <textarea class="form-control" name="noidung" rows="3" required></textarea>
+              </td> 
+              <td> 
+                <span class="wrap-rating fs-18 cl11 pointer" style="margin-top: -9px;">
+                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                    <input class="dis-none" type="number" name="rating" min="1" max="5" required>
+                </span>
+              </td>
+              <td>
+                <input type="hidden" name="id_sp" value="' . $id_sp . '">
+                <input type="hidden" name="tensp" value="' . $name . '">
+                <button style="font-family: Popspismedium; font-size: 14px; margin-top: 20px;" 
+                    type="submit" class="btn btn-danger">Đánh Giá</button>
+              </td>';
+    }
+
+    echo '</form></tr>';
+}        
 ?>
+
                     </tbody>
                 </table>
             </div>

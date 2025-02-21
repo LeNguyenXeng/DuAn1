@@ -12,4 +12,8 @@ function load_All_rating($id_sp) {
     $sql = "SELECT * FROM `binh_luan` WHERE id_sp = ?";
     return pdo_query($sql, [$id_sp]);
 }
+function check_existing_comment($id_nguoidung, $id_sp) {
+    $sql = "SELECT COUNT(*) FROM `binh_luan` WHERE `id_nguoidung` = ? AND `id_sp` = ?";
+    return pdo_query_value($sql, $id_nguoidung, $id_sp);
+}
 ?>

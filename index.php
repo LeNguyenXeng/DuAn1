@@ -305,6 +305,7 @@ if (isset($_GET['act'])) {
                             header('Location: index.php?act=login');
                             exit();
                         }
+                
                         $id_bl = 0;
                         $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                         $hoten = $_SESSION['user']['hoten'];
@@ -315,14 +316,29 @@ if (isset($_GET['act'])) {
                         $ngaybl = date('Y-m-d H:i:s');
                 
                         if ($id_sp > 0 && !empty($noidung) && $star > 0) {
-                            insert_rating($id_bl,$id_nguoidung, $hoten, $id_sp, $tensp, $noidung, $ngaybl, $star);
+                            // Kiểm tra nếu đã có đánh giá thì không thêm nữa
+                            if (check_existing_comment($id_nguoidung, $id_sp) == 0) {
+                                insert_rating($id_bl, $id_nguoidung, $hoten, $id_sp, $tensp, $noidung, $ngaybl, $star);
+                            }
                             header("Location: index.php?act=productdetail&idsp=$id_sp");
                             exit();
-                        } else {
-                            echo "<script>alert('Vui lòng nhập nội dung và chọn số sao!');</script>";
                         }
                     }
                     break;
+                    case "returnbill":
+                        if (isset($_GET['id_donhang'])) { // Kiểm tra nếu id_donhang tồn tại
+                            $id_donhang = $_GET['id_donhang'];
+                            if (updateOrderStatus($id_donhang, 7)) {
+                                header("Location: index.php?act=bill");
+                                exit();
+                            } else {
+                                // Xử lý lỗi nếu cập nhật không thành công
+                                echo "Cập nhật trạng thái đơn hàng thất bại.";
+                            }
+                        } else {
+                            echo "ID đơn hàng không tồn tại.";
+                        }
+                    break; // Đảm bảo có break ở đây
         default:
             include "view/home.php";
             break;

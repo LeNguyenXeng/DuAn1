@@ -32,7 +32,6 @@
                                 <th>Nội Dung Bình Luận</th>
                                 <th>Ngày Bình Luận</th>
                                 <th>Đánh Giá</th>
-                                <th>Hành Động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,11 +43,6 @@
                                 <td>Sản phẩm đẹp, sẽ mua lại</td>
                                 <td>24/12/2024</td>
                                 <td>5 Sao</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger btn-circle">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
