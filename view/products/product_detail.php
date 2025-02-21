@@ -222,76 +222,52 @@
                                 <div class="p-b-30 m-lr-15-sm">
                                     <!-- Review -->
                                     <div class="flex-w flex-t">
-                                        <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="./resources/assets/img/avatar-01.jpg" alt="AVATAR">
-                                        </div>
+
 
                                         <?php 
-                                        //     foreach ($listbl as $binhluan) {
-                                        //         extract($binhluan);
-                                        //         echo '<div class="size-207">
-                                        //     <div class="flex-w flex-sb-m p-b-17">
-                                        //         <span class="mtext-107 cl2 p-r-20">
-                                        //             Xèng
-                                        //         </span>
-
-                                        //         <span class="fs-18 cl11">
-                                        //             <i class="zmdi zmdi-star"></i>
-                                        //             <i class="zmdi zmdi-star"></i>
-                                        //             <i class="zmdi zmdi-star"></i>
-                                        //             <i class="zmdi zmdi-star"></i>
-                                        //             <i class="zmdi zmdi-star-half"></i>
-                                        //         </span>
-                                        //     </div>
-
-                                        //     <p class="stext-102 cl6">
-                                        //         Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
-                                        //         ủng hộ
-                                        //         tiếp. Chất lượng là số 1!!
-                                        //     </p>
-                                        // </div>';
-                                        //     }
-
-                                        if (is_array($listbl) || is_object($listbl)) {
-                                            foreach ($listbl as $binhluan) {
-                                                extract($binhluan);
-                                                echo '<div class="size-207">
+                                        foreach ($listbinhluan as $binhluan) {
+                                            extract($binhluan);
+                                            echo '<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                            <img src="https://t3.ftcdn.net/jpg/05/47/85/88/360_F_547858830_cnWFvIG7SYsC2GLRDoojuZToysoUna4Y.jpg"
+                                                alt="AVATAR">
+                                        </div>';
+                                            echo '<div class="size-207">
                                                 <div class="flex-w flex-sb-m p-b-17">
                                                     <span class="mtext-107 cl2 p-r-20">
-                                                        Xèng
+                                                        '.$hoten.'
                                                     </span>
-    
-                                                    <span class="fs-18 cl11">
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star-half"></i>
-                                                    </span>
+                                                    <span class="fs-18 cl11">';
+                                            
+                                            for ($i = 0; $i < 5; $i++) {
+                                                if ($i < $star) {
+                                                    echo '<i class="zmdi zmdi-star" style="color: orange;"></i>'; 
+                                                } else {
+                                                    echo '<i class="zmdi zmdi-star" style="color: gray;"></i>'; 
+                                                }
+                                            }
+                                            
+                                            echo '</span>
                                                 </div>
-    
                                                 <p class="stext-102 cl6">
-                                                    Sản phẩm đẹp, chất liệu áo tốt. Cho shop 5 sao, lần sau sẽ
-                                                    ủng hộ
-                                                    tiếp. Chất lượng là số 1!!
+                                                '.$noidung.'
                                                 </p>
                                             </div>';
-                                            }
-                                        } else {
-                                            echo '<p>Không có bình luận nào.</p>';
+                                        }
+                                        if (empty($listbinhluan)) {
+                                            echo '<p class="stext-102 cl6" style="color: red; font-family: Popspismedium, sans-serif; margin: 0 auto; font-size: 16px  ">Chưa có bình luận nào</p>';
                                         }
                                         ?>
                                     </div>
 
 
-                                    </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     </section>

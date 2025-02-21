@@ -12,4 +12,24 @@ function load_All_rating($id_sp) {
     $sql = "SELECT * FROM `binh_luan` WHERE id_sp = ?";
     return pdo_query($sql, [$id_sp]);
 }
+
+function loadAll_binhluan(){
+    $sql = "SELECT * FROM `binh_luan` ORDER BY id_bl DESC";
+    $listbinhluan = pdo_query($sql);
+    return $listbinhluan;
+}
+function delete_binhluan($id) {
+    $sql="delete from binh_luan where id_bl=".$id;
+    pdo_execute($sql);
+}
+
+function loadId_binhluan($id_sp) {
+    $sql = "SELECT * FROM `binh_luan` WHERE id_sp = " . $id_sp . " ORDER BY id_bl DESC";
+    $listbinhluan = pdo_query($sql);
+    return $listbinhluan;
+}
+
+
+
+
 ?>

@@ -65,6 +65,7 @@
                                 $trangthai_mo_ta = isset($list_trangthai[$id_trangthai]) ? $list_trangthai[$id_trangthai] : 'Không xác định';
                                 $phuongthuc = isset($list_phuongthucthanhtoan[$pttt]) ? $list_phuongthucthanhtoan[$pttt] : 'Không xác định';
                                 $xoa = "index.php?act=deletebill&id_donhang=" . $mybill['id_donhang'];
+                                $trahang = "index.php?act=returnbill&id_donhang=" . $mybill['id_donhang'];
                                 echo '
                                    <tr style="font-size: 14px; font-family: Popspismedium, sans-serif;">
                                    <td>'.$madh.'</td>
@@ -80,6 +81,11 @@
 
                                 if ($id_trangthai === 5) {
                                     echo '<a href="index.php?act=rating&id_donhang='.$mybill['id_donhang'].'" class="btn btn-outline-success"">Đánh giá</a>';
+                                }
+
+                                
+                                if ($id_trangthai === 5) {
+                                    echo '<a href="'.$trahang.'" class="btn btn-outline-warning" style="margin-left: 3px;" onclick="return confirm(\'Bạn có chắc chắn muốn hủy đơn hàng này không?\');">Trả Hàng</a>';
                                 }
 
                                 echo '<a href="index.php?act=billdetail&id_donhang='.$mybill['id_donhang'].'">

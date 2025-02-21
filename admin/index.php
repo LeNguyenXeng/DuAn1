@@ -7,6 +7,7 @@ include "../model/danhmuc.php";
 include "../model/taikhoan.php";
 include "../model/pdo.php";
 include "../model/sanpham.php";
+include "../model/binhluan.php";
 include "../model/cart.php";
 include "../model/bill.php";
 include "../global.php";
@@ -236,8 +237,17 @@ if(isset($_GET['act'])){
             break;
         // Comment
         case "listcomment":
+            $listbinhluan = loadAll_binhluan();
             include "view/comment/list.php";
             break;
+            case 'deletecomment':
+                if(isset($_GET['id'])&&($_GET['id']>0)){
+                    delete_binhluan($_GET['id']);
+                }
+                $listbinhluan = loadAll_binhluan();
+
+                include "view/comment/list.php";
+                break;
         
         // Statistical
         case "liststatistical":
