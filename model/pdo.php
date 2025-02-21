@@ -95,3 +95,9 @@ function pdo_prepare($sql) {
     global $pdo; // Giả sử bạn đã khởi tạo đối tượng PDO
     return $pdo->prepare($sql);
 }
+function pdo_query_value($sql, ...$params) {
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchColumn();
+}

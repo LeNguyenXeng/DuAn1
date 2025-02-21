@@ -329,11 +329,12 @@ if (isset($_GET['act'])) {
                         $ngaybl = date('Y-m-d H:i:s');
                 
                         if ($id_sp > 0 && !empty($noidung) && $star > 0) {
-                            insert_rating($id_bl,$id_nguoidung, $hoten, $id_sp, $tensp, $noidung, $ngaybl, $star);
+                            // Kiểm tra nếu đã có đánh giá thì không thêm nữa
+                            if (check_existing_comment($id_nguoidung, $id_sp) == 0) {
+                                insert_rating($id_bl, $id_nguoidung, $hoten, $id_sp, $tensp, $noidung, $ngaybl, $star);
+                            }
                             header("Location: index.php?act=productdetail&idsp=$id_sp");
                             exit();
-                        } else {
-                            echo "<script>alert('Vui lòng nhập nội dung và chọn số sao!');</script>";
                         }
                     }
                     break;
