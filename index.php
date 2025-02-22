@@ -21,47 +21,92 @@ if (isset($_GET['act'])) {
             }
             include "view/shop.php";
             break;
-        case 'shoppingcart':
-            $id_nguoidung = $_SESSION['user']['id_nguoidung'];
-            if (!isset($id_nguoidung)) {
-                header("Location: index.php?act=login");
-                exit();
-            }
-            $spadd = get_cart_items($id_nguoidung);
-            if (isset($_POST['addtocart'])) {
-                $id_sp = $_POST['id_sp'];
-                $soluong = isset($_POST['num-product']) ? (int)$_POST['num-product'] : 1;
-                $price = $_POST['gia'];
-                $anhsp = $_POST['hinh'];
-                $name = $_POST['tensp'];
-                $existingProduct = check_product_in_cart($id_nguoidung, $name);
-
-                if ($existingProduct) {
-                    update_cart_quantity($id_nguoidung, $name, $soluong);
-                } else {
-                    insert($id_nguoidung, $soluong, $price, $anhsp, $name, $id_sp);
+            case 'shoppingcart':
+                // Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng đến trang login
+                if (!isset($_SESSION['user']['id_nguoidung'])) {
+                    header("Location: index.php?act=login");
+                    exit();
                 }
-                // Kiểm tra sản phẩm có trong session chưa
-                if (isset($_SESSION['gio_hang'][$name])) {
-                    // Cập nhật số lượng trong session
-                    $_SESSION['gio_hang'][$name]['soluong'] += $soluong;
-                } else {
-                    // Thêm sản phẩm vào session
-                    $_SESSION['gio_hang'][$name] = array(
-                        'id_sp' => $id_sp,
-                        'soluong' => $soluong,
-                        'gia' => $price,
-                        'hinh' => $anhsp,
-                        'tensp' => $name
-                    );
+            
+                $id_nguoidung = $_SESSION['user']['id_nguoidung'];
+            
+                // Lấy giỏ hàng từ database khi người dùng vào giỏ hàng
+                $spadd = get_cart_items($id_nguoidung);
+            
+                // Kiểm tra nếu giỏ hàng trong database có sản phẩm, cập nhật vào session
+                if (!empty($spadd)) {
+                    $_SESSION['gio_hang'] = [];
+                    foreach ($spadd as $item) {
+                        $_SESSION['gio_hang'][$item['id_sp']] = [
+                            'id_sp'   => isset($item['id_sp']) ? $item['id_sp'] : null,
+                            'soluong' => isset($item['soluong']) ? $item['soluong'] : 1,
+                            'gia'     => isset($item['gia']) ? $item['gia'] : 0,
+                            'hinh'    => isset($item['hinh']) ? $item['hinh'] : 'no-image.png',
+                            'tensp'   => isset($item['tensp']) ? $item['tensp'] : 'Sản phẩm không tên'
+                        ];
+                    }
                 }
-
-                header("Location: index.php?act=shoppingcart");
-                exit();
-            }
-            include "view/shoppingcart.php";
-            break;
-        case "deletesp":
+                
+            
+                // Nếu người dùng thêm sản phẩm vào giỏ hàng
+                if (isset($_POST['addtocart'])) {
+                    // Kiểm tra và lấy dữ liệu từ $_POST
+                    $id_sp = $_POST['id_sp'] ?? null;
+                    $soluong = isset($_POST['num-product']) ? (int)$_POST['num-product'] : 1;
+                    $price = $_POST['gia'] ?? null;
+                    $anhsp = $_POST['hinh'] ?? null;
+                    $name = $_POST['tensp'] ?? null;
+                
+                    // Kiểm tra dữ liệu hợp lệ
+                    if ($id_sp && $price && $anhsp && $name) {
+                        $existingProduct = check_product_in_cart($id_nguoidung, $name);
+                        $stock_quantity = slkho($id_sp); // Lấy số lượng tồn kho
+                
+                        if ($existingProduct) {
+                            // Nếu sản phẩm đã có trong giỏ hàng
+                            $current_quantity = $_SESSION['gio_hang'][$id_sp]['soluong'];
+                            $new_quantity = $current_quantity + $soluong;
+                
+                            // Kiểm tra xem số lượng yêu cầu có vượt quá tồn kho không
+                            if ($new_quantity > $stock_quantity) {
+                                echo "<script>alert('Lỗi: Không đủ hàng trong kho để thêm sản phẩm này!');</script>";
+                                exit();
+                            } else {
+                                update_cart_quantity($id_nguoidung, $name, $soluong);
+                            }
+                        } else {
+                            // Nếu sản phẩm chưa có trong giỏ hàng
+                            if ($soluong > $stock_quantity) {
+                                echo "<script>alert('Lỗi: Không đủ hàng trong kho để thêm sản phẩm này!');</script>";
+                                exit();
+                            } else {
+                                insert($id_nguoidung, $soluong, $price, $anhsp, $name, $id_sp);
+                            }
+                        }
+                
+                        // Cập nhật session giỏ hàng
+                        if (isset($_SESSION['gio_hang'][$id_sp])) {
+                            $_SESSION['gio_hang'][$id_sp]['soluong'] += $soluong;
+                        } else {
+                            $_SESSION['gio_hang'][$id_sp] = [
+                                'id_sp'   => $id_sp,
+                                'soluong' => $soluong,
+                                'gia'     => $price,
+                                'hinh'    => $anhsp,
+                                'tensp'   => $name
+                            ];
+                        }
+                
+                        header("Location: index.php?act=shoppingcart");
+                        exit();
+                    } else {
+                        echo "<script>alert('Lỗi: Dữ liệu không hợp lệ!');</script>";
+                    }
+                }
+            
+                include "view/shoppingcart.php";
+                break;
+             case "deletesp":
             if (isset($_SESSION['user']['id_nguoidung'])) {
                 $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                 $name = $_GET['name'];
@@ -190,9 +235,15 @@ if (isset($_GET['act'])) {
             break;
 
         case 'logout':
-            session_unset();
-            header("location: index.php");
-            break;
+            case 'logout':
+                session_start(); // Đảm bảo session đã được khởi tạo
+                session_unset(); // Xóa tất cả các biến session
+                session_destroy(); // Hủy toàn bộ session
+                
+                // Chuyển hướng về trang chủ hoặc trang đăng nhập
+                header("Location: index.php");
+                exit();
+            
             // Product
         case "productdetail":
             if (isset($_GET['idsp'])) {

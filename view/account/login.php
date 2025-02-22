@@ -35,45 +35,34 @@
                             <h5 style="font-weight: bold; font-family: semibold;" class="my-3"><?php echo $hoten ?>
                             </h5>
                             <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; ">
-                                <button type="button"
+                                <button type="button" onclick="location.href='index.php?act=forgotpassword'"
                                     style="padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-                                    <a href="index.php?act=forgotpassword"
-                                        style="color: white; text-decoration: none;">Quên
-                                        mật
-                                        khẩu</a>
-
+                                    Quên mật khẩu
                                 </button>
-                                <button type="button"
-                                    style="padding: 10px; background-color: transparent; border: 1px solid #6c757d; border-radius: 5px;">
-                                    <a href="index.php?act=updateaccount"
-                                        style="color: #6c757d; text-decoration: none;">Cập
-                                        nhật tài khoản</a>
+                                <button type="button" onclick="location.href='index.php?act=updateaccount'"
+                                    style=" padding: 10px; background-color: transparent; border: 1px solid #6c757d; color: #6c757d; border-radius: 5px;">
+                                    Cập nhật tài khoản
                                 </button>
                             </div>
-                            <button type="button"
-                                style="padding: 10px; background-color: brown; color: white; margin-bottom: 15px; border: none; border-radius: 5px; width: 283px;">
-                                <a href="index.php?act=bill"
-                                    style="color: white; text-decoration: none; font-family: Popspismedium;">Đơn
-                                    Hàng</a>
+                            <button type="button" onclick="location.href='index.php?act=bill'"
+                                style="    font-family: Poppins;
+padding: 10px; background-color: brown; color: white; margin-bottom: 15px; border: none; border-radius: 5px; width: 283px;">
+                                Đơn Hàng
                             </button>
 
                             <?php if ($role == 1) { ?>
                             <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
-                                <button type="button"
-                                    style="padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; width: 283px;">
-                                    <a href="admin/index.php"
-                                        style="color: white; text-decoration: none; font-family: Popspismedium;">Đăng
-                                        nhập vào
-                                        Admin</a>
+                                <button type="button" onclick="location.href='admin/index.php'" style="padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; width: 283px;     font-family: Poppins;
+">
+                                    Đăng nhập vào Admin
                                 </button>
                             </div>
                             <?php } ?>
-                            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; ">
-                                <button type="button"
-                                    style="padding: 10px; background-color: transparent; border: 1px solid #dc3545; border-radius: 5px; width: 283px;">
-                                    <a href="index.php?act=logout"
-                                        style="color: #dc3545; text-decoration: none; font-family: Popspismedium;">Đăng
-                                        Xuất</a>
+
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <button type="button" onclick="location.href='index.php?act=logout'" style="padding: 10px; background-color: transparent; border: 1px solid #dc3545; border-radius: 5px; width: 283px; color: red;     font-family: Poppins;
+">
+                                    Đăng Xuất
                                 </button>
                             </div>
                         </div>
