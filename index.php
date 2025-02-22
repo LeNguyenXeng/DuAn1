@@ -272,6 +272,7 @@ if (isset($_GET['act'])) {
                     }
                     $listbl = load_All_rating($id_bl);
                     // Xóa giỏ hàng sau khi đặt hàng thành công
+                    deleteall($id_nguoidung);
                     unset($_SESSION['gio_hang']);
             
                     // Chuyển hướng tới trang xác nhận đơn hàng
