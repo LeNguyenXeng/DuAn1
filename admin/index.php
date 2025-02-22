@@ -249,15 +249,7 @@ if(isset($_GET['act'])){
                 include "view/comment/list.php";
                 break;
         
-        // Statistical
-        case "liststatistical":
-            include "view/statistical/list.php";
-            break;
-
-         // Statistical
-         case "liststatistical":
-            include "view/statistical/list.php";
-            break;
+       
         
         // Manage
         case "listmanage":

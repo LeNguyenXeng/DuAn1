@@ -109,14 +109,6 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?act=liststatistical">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Thống Kê</span></a>
-
-            </li>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php?act=listmanage">
