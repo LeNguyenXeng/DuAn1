@@ -87,12 +87,21 @@ include "header.php";
                         ?>
                         </table>
                         <div class="div" style="display: flex; justify-content: center; padding-top: 18px; gap: 20px;">
+                            <?php if (!empty($spadd)) { ?>
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
                                 href="index.php?act=checkout">Thanh Toán</a>
+                            <?php } else { ?>
+                            <button
+                                style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
+                                class="flex-c-m cl2 bg8 bor13 p-lr-15 trans-04 pointer m-tb-10" disabled>Thanh
+                                Toán</button>
+                            <?php } ?>
+
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 200px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
                                 href="index.php?act=shop">Tiếp Tục Mua Hàng</a>
+
                             <a style="height: 41px; font-family: Poppins, sans-serif; text-transform: capitalize; width: 155px; text-align: center;"
                                 class="flex-c-m cl2 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
                                 href="index.php?act=deleteall&id_nguoidung=<?php echo $id_nguoidung; ?>"
