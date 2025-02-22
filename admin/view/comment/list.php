@@ -32,7 +32,6 @@
                                 <th>Nội Dung Bình Luận</th>
                                 <th>Ngày Bình Luận</th>
                                 <th>Đánh Giá</th>
-                                <th>Hành Động</th>
                             </tr>
                         </thead>
                         <tbody>

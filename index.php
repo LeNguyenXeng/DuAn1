@@ -272,6 +272,7 @@ if (isset($_GET['act'])) {
                     }
                     $listbl = load_All_rating($id_bl);
                     // Xóa giỏ hàng sau khi đặt hàng thành công
+                    deleteall($id_nguoidung);
                     unset($_SESSION['gio_hang']);
             
                     // Chuyển hướng tới trang xác nhận đơn hàng
@@ -319,6 +320,7 @@ if (isset($_GET['act'])) {
                             header('Location: index.php?act=login');
                             exit();
                         }
+                
                         $id_bl = 0;
                         $id_nguoidung = $_SESSION['user']['id_nguoidung'];
                         $hoten = $_SESSION['user']['hoten'];
@@ -338,6 +340,20 @@ if (isset($_GET['act'])) {
                         }
                     }
                     break;
+                    case "returnbill":
+                        if (isset($_GET['id_donhang'])) { // Kiểm tra nếu id_donhang tồn tại
+                            $id_donhang = $_GET['id_donhang'];
+                            if (updateOrderStatus($id_donhang, 7)) {
+                                header("Location: index.php?act=bill");
+                                exit();
+                            } else {
+                                // Xử lý lỗi nếu cập nhật không thành công
+                                echo "Cập nhật trạng thái đơn hàng thất bại.";
+                            }
+                        } else {
+                            echo "ID đơn hàng không tồn tại.";
+                        }
+                    break; // Đảm bảo có break ở đây
         default:
             include "view/home.php";
             break;
