@@ -52,6 +52,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID Đơn Hàng</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Họ Tên Người Đặt</th>
                                 <th>Số Điện Thoại</th>
@@ -91,6 +92,7 @@
                             }
 
                                 echo ' <tr>
+                                <td>'.$id_donhang.'</td>
                                 <td>'.$madh.'</td>
                                 <td>'.$hoten.'</td>
                                 <td>'.$sdt.'</td>

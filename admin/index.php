@@ -237,19 +237,15 @@ if(isset($_GET['act'])){
             break;
         // Comment
         case "listcomment":
-            $listbinhluan = loadAll_binhluan();
+            $listbinhluan = loadAll_binhluan_with_hidden(); 
             include "view/comment/list.php";
             break;
-            case 'deletecomment':
-                if(isset($_GET['id'])&&($_GET['id']>0)){
-                    delete_binhluan($_GET['id']);
-                }
-                $listbinhluan = loadAll_binhluan();
-
-                include "view/comment/list.php";
-                break;
-        
-       
+        case 'togglecomment':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                toggle_visibility($_GET['id']);
+            }
+            header("Location: index.php?act=listcomment");
+            exit;
         
         // Manage
         case "listmanage":

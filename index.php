@@ -69,7 +69,7 @@ if (isset($_GET['act'])) {
                 
                             // Kiểm tra xem số lượng yêu cầu có vượt quá tồn kho không
                             if ($new_quantity > $stock_quantity) {
-                                echo "<script>alert('Lỗi: Không đủ hàng trong kho để thêm sản phẩm này!');</script>";
+                                echo "<script>alert('Lỗi: Không đủ hàng trong kho để thêm sản phẩm này!'); window.location.href='index.php';</script>";
                                 exit();
                             } else {
                                 update_cart_quantity($id_nguoidung, $name, $soluong);
