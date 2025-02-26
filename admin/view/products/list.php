@@ -54,7 +54,6 @@
                                 <th>Tên Sản Phẩm</th>
                                 <th>Hình Ảnh</th>
                                 <th>Giá Sản Phẩm</th>
-                                <th>Giảm Giá</th>
                                 <th>Số Lượng</th>
                                 <th>Mô Tả</th>
                                 <th>Ngày Tạo</th>
@@ -81,7 +80,6 @@
                                 <td>'.$tensp.'</td>
                                 <td>'.$hinh.'</td>
                                 <td>'.number_format($gia, 0, '', ',').'đ</td>
-                                <td>'.$giamgia.'</td>
                                 <td>'.$soluong.'</td>
                                 <td>'.$mota.'</td>
                                 <td>'.$ngaytao.'</td>
