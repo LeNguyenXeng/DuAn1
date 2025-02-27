@@ -198,7 +198,8 @@ if (isset($_GET['act'])) {
                 $sdt = $_POST['sdt'];
                 $email = $_POST['email'];
                 $matkhau = $_POST['matkhau'];
-                insert_nguoidung($hoten, $sdt, $email, $matkhau);
+                $diachi = $_POST['diachi'];
+                insert_nguoidung($hoten,$sdt,$email,$matkhau,$diachi);
                 $thongbao = "Đăng ký thành công";
                 header("location: index.php?act=login");
             }
