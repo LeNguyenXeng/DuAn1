@@ -40,6 +40,11 @@
                     placeholder=" Số điện thoại" name="sdt" required>
             </div>
             <div class="mb-3">
+                <label for="exampleInputEmail1" class="tkmk form-label">Địa Chỉ</label>
+                <input type="text" class="inputform form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder=" Địa chỉ" name="diachi" required>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="tkmk form-label">Email</label>
                 <input type="email" class="inputform form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder=" Email" name="email" required>

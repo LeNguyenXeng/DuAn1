@@ -1,6 +1,6 @@
 <?php
- function insert_nguoidung($hoten,$sdt,$email,$matkhau){
-        $sql = "INSERT INTO nguoi_dung(hoten,sdt,email,matkhau,ngaydangky) values('$hoten','$sdt','$email','$matkhau',now())";
+ function insert_nguoidung($hoten,$sdt,$email,$matkhau,$diachi){
+        $sql = "INSERT INTO nguoi_dung(hoten,sdt,email,matkhau,diachi,ngaydangky) values('$hoten','$sdt','$email','$matkhau','$diachi',now())";
         pdo_execute($sql);
     }
     function checkuser($email,$matkhau){
